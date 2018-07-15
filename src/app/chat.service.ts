@@ -6,10 +6,11 @@ import * as io from 'socket.io-client';
 export class ChatService {
 
     private socket;
-    public profile = {
+    public profile = {  
         name: ''
     };
-    private url = 'http://localhost:3000';
+    // private url = 'https://app-vietchat.herokuapp.com:8080';
+    private url = 'http://localhost:8080';
     constructor() {
         this.socket = io(this.url);
     }
