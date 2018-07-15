@@ -1,0 +1,10 @@
+input{
+    /* vertical-align: middle; */
+    align-items: center; /* align vertical */
+    color: black !important;
+}
+
+button{
+    margin: 15px auto 0 auto;
+    display: flex;
+}

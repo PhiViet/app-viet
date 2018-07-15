@@ -1,0 +1,72 @@
+<div class="home font-jose">
+    <div class="header">
+        <span class="infor">
+            Hello {{account.nameAccount}}
+        </span>
+        <span class="logout" (click)="logout()">
+            <i class="fas fa-sign-out-alt"></i> Logout
+        </span>
+    </div>
+
+    <div class="listuser left" *ngIf="listusers.length > 0">
+        <div class="online">
+            <div *ngFor='let user of listusers' class="client">
+                <div class="dot"></div>
+                <div class="name">{{user}}</div>
+            </div>
+            <!-- <div class="client">
+                <div class="dot"></div>
+                <div class="name">Phi Viet</div>
+            </div>
+            <div class="client">
+                <div class="dot"></div>
+                <div class="name">Phi Viet</div>
+            </div> -->
+        </div>
+    </div>
+    <div class="listuser left" *ngIf="listusers.length == 0">
+        <img src="assets/sad-face.ico" width="50%" height="50%" alt="">
+        <br>
+        không có ai hết !!
+    </div>
+    <div class="boxmessage right">
+        <h5 style="text-align: center">Write Something</h5>
+        <div class="content-mess" *ngFor='let content of messages'>
+            <p>
+                <b>{{content.username}}</b> : {{content.message}}</p>
+        </div>
+        <!-- <div class="content-mess darker">
+            <p>Hello. How are you today?</p>
+        </div>
+
+        <div class="content-mess">
+            <p>Hey! I'm fine. Thanks for asking!</p>
+        </div> -->
+
+
+        <div class="input">
+            <span class="icon-image">
+                <img src="assets/image.png" width="4%" height="4%" alt="">
+            </span>
+            <input class="text-mess" type="text" [(ngModel)]="message" (keyup.enter)="sendMessage()">
+            <span class="icon-send" (click)="sendMessage()">
+                <img src="assets/send.png" width="4%" height="4%" alt="">
+            </span>
+        </div>
+    </div>
+</div>
+
+
+<!-- <div class="container darker">
+              <p><b> Phi Viet</b> : Sweet! So, what do you wanna do today?</p>
+            </div> -->
+
+<!-- <div class="content">
+            <div *ngFor='let content of messages'>
+                <b>{{content.username}}</b> : {{content.message}}
+            </div>
+        </div>
+        <div class="tool-message">
+            <input type="text" class="text-mess form-control" [(ngModel)]="message" (keyup.enter)="sendMessage()">
+            <button class="btn-send btn btn-primary" (click)="sendMessage()">send</button>
+        </div> -->
