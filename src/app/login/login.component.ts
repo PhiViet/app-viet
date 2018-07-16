@@ -27,7 +27,6 @@ export class LoginComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.test = ':) ahihi';
 
         this.account = JSON.parse(localStorage.getItem('account'));
         if (this.account) {
@@ -37,12 +36,6 @@ export class LoginComponent implements OnInit {
         this.setNamePlaceholder();
         this.checkRegisterSuccess();
         this.checkRegisterFail();
-    }
-
-    demo(){
-        this.test = this.test.replace(':)','<img src="assets/1.gif" alt="">');
-        // let input = document.getElementById('account') as HTMLInputElement;
-        // input.value = ;
     }
 
     i: number = 0;
