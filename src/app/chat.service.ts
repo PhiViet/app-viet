@@ -9,8 +9,8 @@ export class ChatService {
     public profile = {  
         name: ''
     };
-    // private url = 'https://app-vietchat.herokuapp.com';
-    private url = 'http://localhost:8080';
+    private url = 'https://app-vietchat.herokuapp.com';
+    // private url = 'http://localhost:8080';
     constructor() {
         this.socket = io(this.url);
     }
