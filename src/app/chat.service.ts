@@ -9,8 +9,8 @@ export class ChatService {
     public profile = {  
         name: ''
     };
-    private url = 'https://app-vietchat.herokuapp.com';
-    // private url = 'http://localhost:8080';
+    // private url = 'https://app-vietchat.herokuapp.com';
+    private url = 'http://localhost:8080';
     constructor() {
         this.socket = io(this.url);
     }
@@ -72,7 +72,7 @@ export class ChatService {
         // }
     }
 
-    listOnlineUsers() {
+    listOnlineUsersFromSoket() {
         let observable = new Observable(observer => {
             this.socket.on('server-send-users', (data) => {
                 console.log(data);
@@ -86,5 +86,4 @@ export class ChatService {
 
         return observable;
     }
-
 }

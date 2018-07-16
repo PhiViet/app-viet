@@ -1,3 +1,4 @@
+import { UsersService } from './../users.service';
 import { ChatService } from './../chat.service';
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
@@ -23,7 +24,9 @@ export class LoginComponent implements OnInit {
     constructor(
         private toastService: ToastrService,
         private router: Router,
-        private chatService: ChatService) {
+        private chatService: ChatService,
+        private userService: UsersService
+    ) {
     }
 
     ngOnInit() {
@@ -75,6 +78,9 @@ export class LoginComponent implements OnInit {
     register() {
         if (this.nameAccount.length > 0) {
             this.chatService.registerAUser(this.nameAccount);
+            this.userService.addUsersToOnline(this.nameAccount).subscribe(data => {
+                console.log('data' + data);
+            })
         }
         else {
             this.invalidName();

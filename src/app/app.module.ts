@@ -1,3 +1,4 @@
+import { UsersService } from './users.service';
 import { LoginGuard } from './login.route.guard';
 import { HomeComponent } from './home/home.component';
 import { BrowserModule } from '@angular/platform-browser';
@@ -10,7 +11,7 @@ import { RoutingModule } from './app.routes';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule, ToastrService } from 'ngx-toastr';
 import { ChatService } from './chat.service';
-
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -23,12 +24,14 @@ import { ChatService } from './chat.service';
     FormsModule,
     RoutingModule,
     BrowserAnimationsModule,
+    HttpClientModule,
     ToastrModule.forRoot()
 
   ],
   providers: [
     LoginGuard,
-    ChatService
+    ChatService,
+    UsersService
   ],
   bootstrap: [AppComponent]
 })

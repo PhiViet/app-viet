@@ -1,17 +1,25 @@
 var express = require('express');
 var app = express();
-var path = require("path");
+var path = require('path');
 
+var routerUsers = require('./router');
+// connect mongodb
+var bodyParser = require('body-parser');
+var mongoose = require('mongoose');
+
+var server = require('http').Server(app);
+var io = require('socket.io')(server);
+
+mongoose.connect('mongodb://localhost:27017/chatDB', { useNewUrlParser: true });
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error'));
+db.once('open', function () {
+    console.log('connected mongo in port 27017');
+});
+
+// path to dist
 app.use(express.static(__dirname + '/dist/APP-CHAT'));
 
-// app.listen(process.env.PORT || 8080);
-
-// app.use(express.static("./public"));  // đứng từ client
-// app.set("view engine", "ejs");
-// app.set("views", "./views");
-
-var server = require("http").Server(app);
-var io = require("socket.io")(server);
 server.listen(process.env.PORT || 8080);
 // app.listen(process.env.PORT || 8080);
 
@@ -22,12 +30,14 @@ var arrUsers = [];
 io.on("connection", listenClient);
 
 function listenClient(socket) {
-    console.log('connect - ' + socket.id);
+    
+    // client send username
     socket.on("client-send-username", function (data) {
         if (arrUsers.indexOf(data) > -1) {
             socket.emit("server-send-register-fail");
         }
         else {
+
             arrUsers.push(data);
             socket.username = data;
             socket.emit("server-send-register-success", data);
@@ -36,9 +46,9 @@ function listenClient(socket) {
     })
 
     socket.on("logout", function () {
-        console.log('Logout' + socket.username);
         var index = arrUsers.indexOf(socket.username);
         arrUsers.splice(index, 1);
+        deleteUserFromListOnline(socket.username);
         socket.broadcast.emit("server-send-users", arrUsers);
     });
 
@@ -49,13 +59,6 @@ function listenClient(socket) {
                 message: data
             });
     });
-
-    // socket.on("send-message", function (data) {
-    //     io.sockets.emit("message", 
-    //     { 
-    //         message: data
-    //     });
-    // });
 
     socket.on("client-typing", function () {
         var s = socket.username + " in typing";
@@ -71,6 +74,9 @@ function listenClient(socket) {
         var index = arrUsers.indexOf(socket.username);
         arrUsers.splice(index, 1);
         socket.broadcast.emit("server-send-users", arrUsers);
+
+        deleteUserFromListOnline(socket.username);
+
         console.log('DISCONNECT : ' + socket.id);
     });
 
@@ -79,3 +85,36 @@ function listenClient(socket) {
 app.get('/*', function (req, res) {
     res.sendFile(path.join(__dirname + '/dist/APP-CHAT/index.html'));
 });
+
+// schema
+var onlineSchema = mongoose.Schema({
+    name: String
+})
+
+var Online = mongoose.model('Online', onlineSchema);
+
+function deleteUserFromListOnline(username) {
+    Online.findOneAndDelete({ name: username })
+        .then();
+}
+// router
+const router = require('express').Router();
+router.post('/addUserToListOnline', addUserToListOnline);
+
+function addUserToListOnline(req, res, next) {
+    body = {
+        name: req.body.name
+    }
+    var user = new Online(body);
+
+    user.save()
+        .then(data => {
+            res.send(data);
+        })
+        .catch(err => {
+            next(err);
+        })
+}
+
+app.use(bodyParser.json());
+app.use('/api/', router);

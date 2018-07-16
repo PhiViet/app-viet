@@ -54,10 +54,13 @@
                 <img src="assets/image.png" width="4%" height="4%" alt="">
             </span>
             <input class="text-mess" type="text" [(ngModel)]="message" (keyup.enter)="sendMessage()">
+            <!-- (ngModelChange)="filterStringToYahooIcon(message)" -->
             <span class="icon-send" (click)="sendMessage()">
                 <img src="assets/send.png" width="4%" height="4%" alt="">
             </span>
         </div>
+        <!-- <div [innerHTML]="this.message"></div> -->
+
     </div>
 </div>
 
