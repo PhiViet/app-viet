@@ -26,15 +26,20 @@
     </div>
     <div class="listuser left" *ngIf="listusers.length == 0">
         <img src="assets/sad-face.ico" width="50%" height="50%" alt="">
-        <br>
-        không có ai hết !!
+        <br> không có ai hết !!
     </div>
     <div class="boxmessage right">
         <h5 style="text-align: center">Write Something</h5>
-        <div class="content-mess" *ngFor='let content of messages'>
-            <p>
-                <b>{{content.username}}</b> : {{content.message}}</p>
+        <div id="content-mess">
+            <div class="mess" *ngFor='let content of messages'>
+                <p>
+                    <b>{{content.username}}</b> :
+                    <span [innerHTML]='content.message'></span>
+                    <!-- {{content.message}} -->
+                </p>
+            </div>
         </div>
+
         <!-- <div class="content-mess darker">
             <p>Hello. How are you today?</p>
         </div>

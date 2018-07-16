@@ -75,6 +75,7 @@ export class ChatService {
     listOnlineUsers() {
         let observable = new Observable(observer => {
             this.socket.on('server-send-users', (data) => {
+                console.log(data);
                 observer.next(data);
             });
 

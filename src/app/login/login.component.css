@@ -1,10 +1,34 @@
 input{
-    /* vertical-align: middle; */
-    align-items: center; /* align vertical */
+    align-items: center;
     color: black !important;
 }
 
 button{
     margin: 15px auto 0 auto;
     display: flex;
+}
+
+.formLogin{
+    position: relative;
+    color: #58575b;
+    background-color: white;
+    width: 40%;
+    padding: 40px;
+    margin: 0 auto;
+    border: 10px solid #fff;
+    /* border-bottom: 45px solid #fff; */
+    -webkit-box-shadow: 5px 5px 5px #777;
+       -moz-box-shadow: 5px 5px 5px #777;
+            box-shadow: 5px 5px 5px #777;
+    /* border: solid 5px #EFEFEF; */
+   
+}
+
+.fullScreen{
+    height: 100vh;
+    background-image: url('../../assets/connecting.jpg');
+    /* background-position: center; */
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding-top:30vh;
 }

@@ -89,7 +89,12 @@
     margin: 10px 0;
 }
 
-.content-mess {
+#content-mess{
+    max-height: 40vh;
+    overflow: auto;
+}
+
+.mess {
     border: 2px solid #dedede;
     background-color: #f1f1f1;
     border-radius: 5px;

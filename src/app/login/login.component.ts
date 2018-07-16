@@ -11,6 +11,9 @@ import { CurrencyIndex } from '@angular/common/src/i18n/locale_data';
 })
 
 export class LoginComponent implements OnInit {
+
+    test;
+
     public arrPlaceholerName = ["Sói xám", "Cừu non", "Gà con", "Vịt bầu", "Thỏ nâu"];
     public currentPlaceholerName;
     public currentShowText;
@@ -21,10 +24,11 @@ export class LoginComponent implements OnInit {
         private toastService: ToastrService,
         private router: Router,
         private chatService: ChatService) {
-
     }
 
     ngOnInit() {
+        this.test = ':) ahihi';
+
         this.account = JSON.parse(localStorage.getItem('account'));
         if (this.account) {
             this.chatService.registerAUser(this.account.nameAccount);
@@ -33,6 +37,12 @@ export class LoginComponent implements OnInit {
         this.setNamePlaceholder();
         this.checkRegisterSuccess();
         this.checkRegisterFail();
+    }
+
+    demo(){
+        this.test = this.test.replace(':)','<img src="assets/1.gif" alt="">');
+        // let input = document.getElementById('account') as HTMLInputElement;
+        // input.value = ;
     }
 
     i: number = 0;
