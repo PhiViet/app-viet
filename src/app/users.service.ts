@@ -4,8 +4,8 @@ import { HttpClient } from '@angular/common/http';
 @Injectable()
 export class UsersService {
 
-    // private url = 'https://app-vietchat.herokuapp.com';
-    private url = 'http://localhost:8080/api';
+    private url = 'https://app-vietchat.herokuapp.com';
+    // private url = 'http://localhost:8080/api';
     constructor(
         private http: HttpClient
     ) { }
