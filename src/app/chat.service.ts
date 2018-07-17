@@ -52,11 +52,7 @@ export class ChatService {
     }
 
     checkLogout() {
-        let observable = new Observable(observer => {
             this.socket.emit('logout');
-            observer.next(true);
-        });
-        return observable;
     }
 
     registerSuccess() {
