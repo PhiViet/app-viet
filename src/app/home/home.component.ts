@@ -28,7 +28,6 @@ export class HomeComponent implements OnInit, OnDestroy {
         this.getMessage();
         this.listOnlineUsers();
         // 
-        this.checkLogout();
         this.checkRegisterSuccess();
     }
 
@@ -151,6 +150,8 @@ export class HomeComponent implements OnInit, OnDestroy {
         // location.reload();
 
         this.router.navigate(['/login']);
+        this.chatService.checkLogout();
+
     }
 
     listOnlineUsers() {
@@ -161,24 +162,12 @@ export class HomeComponent implements OnInit, OnDestroy {
         });
     }
 
-    checkLogout() {
-        this.chatService.checkLogout().subscribe(() => {
-            this.toastService.success('Đăng xuất thành công !', '', {
-                timeOut: 2000
-            });
-        }), error((err) => {
-            this.toastService.error('Đăng xuất không thành công !', '', {
-                timeOut: 2000
-            });
-        });
-    }
-
     checkRegisterSuccess() {
-        this.chatService.registerSuccess().subscribe((data) => {
-            this.toastService.success('Đăng nhập thành công !', '', {
-                timeOut: 2000
-            });
-        });
+        // this.chatService.registerSuccess().subscribe((data) => {
+        //     this.toastService.success('Đăng nhập thành công !', '', {
+        //         timeOut: 2000
+        //     });
+        // });
     }
 
     checkExistedAccount(): boolean {

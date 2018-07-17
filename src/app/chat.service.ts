@@ -6,7 +6,7 @@ import * as io from 'socket.io-client';
 export class ChatService {
 
     private socket;
-    public profile = {  
+    public profile = {
         name: ''
     };
     private url = 'https://app-vietchat.herokuapp.com';
@@ -53,7 +53,7 @@ export class ChatService {
 
     checkLogout() {
         let observable = new Observable(observer => {
-            this.socket.on('logout');
+            this.socket.emit('logout');
             observer.next(true);
         });
         return observable;
