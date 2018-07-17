@@ -2,6 +2,7 @@ import { ToastrService } from 'ngx-toastr';
 import { ChatService } from './../chat.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
+import { error } from 'util';
 
 @Component({
     selector: 'app-ho',
@@ -27,7 +28,8 @@ export class HomeComponent implements OnInit, OnDestroy {
         this.getMessage();
         this.listOnlineUsers();
         // 
-        // this.checkRegisterSuccess();
+        this.checkLogout();
+        this.checkRegisterSuccess();
     }
 
     sendMessage() {
@@ -147,6 +149,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     logout() {
         localStorage.removeItem('account');
         // location.reload();
+
         this.router.navigate(['/login']);
     }
 
@@ -155,6 +158,18 @@ export class HomeComponent implements OnInit, OnDestroy {
             // this.listusers = data;
             this.listusers = data.filter(e => e !== this.account.nameAccount);
             // this.listusers = data;
+        });
+    }
+
+    checkLogout() {
+        this.chatService.checkLogout().subscribe(() => {
+            this.toastService.success('Đăng xuất thành công !', '', {
+                timeOut: 2000
+            });
+        }), error((err) => {
+            this.toastService.error('Đăng xuất không thành công !', '', {
+                timeOut: 2000
+            });
         });
     }
 

@@ -51,6 +51,13 @@ export class ChatService {
         return observable;
     }
 
+    checkLogout() {
+        let observable = new Observable(observer => {
+            this.socket.on('logout');
+        });
+        return observable;
+    }
+
     registerSuccess() {
         let observable = new Observable(observer => {
             this.socket.on('server-send-register-success', (data) => {
