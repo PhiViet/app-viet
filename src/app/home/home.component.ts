@@ -146,7 +146,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
     logout() {
         localStorage.removeItem('account');
-        location.reload();
+        // location.reload();
         this.router.navigate(['/login']);
     }
 
@@ -179,6 +179,6 @@ export class HomeComponent implements OnInit, OnDestroy {
     }
 
     ngOnDestroy() {
-        this.connection.unsubscribe();
+        // this.connection.unsubscribe();
     }
 }
