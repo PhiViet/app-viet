@@ -9,8 +9,9 @@ var mongoose = require('mongoose');
 
 var server = require('http').Server(app);
 var io = require('socket.io')(server);
-
-mongoose.connect('mongodb://localhost:27017/chatDB', { useNewUrlParser: true });
+// mongodb://<dbuser>:<dbpassword>@ds139951.mlab.com:39951/dbchat
+mongoose.connect('mongodb://phiviet:viethoa00@ds139951.mlab.com:39951/dbchat', { useNewUrlParser: true });
+// mongoose.connect('mongodb://localhost:27017/chatDB', { useNewUrlParser: true });
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error'));
 db.once('open', function () {

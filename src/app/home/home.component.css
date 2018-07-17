@@ -94,6 +94,15 @@
     overflow: auto;
 }
 
+.img-face{
+    animation: rotation 2s normal linear;
+}
+
+@keyframes rotation {
+    from {-webkit-transform: rotate(0deg);}
+    to   {-webkit-transform: rotate(360deg);}
+}
+
 .mess {
     border: 2px solid #dedede;
     background-color: #f1f1f1;
