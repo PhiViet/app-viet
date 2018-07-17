@@ -54,6 +54,7 @@ export class ChatService {
     checkLogout() {
         let observable = new Observable(observer => {
             this.socket.on('logout');
+            observer.next(true);
         });
         return observable;
     }
