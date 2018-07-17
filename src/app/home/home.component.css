@@ -98,6 +98,10 @@
     animation: rotation 2s normal linear;
 }
 
+.mess p {
+    padding:0;
+}
+
 @keyframes rotation {
     from {-webkit-transform: rotate(0deg);}
     to   {-webkit-transform: rotate(360deg);}

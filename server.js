@@ -11,12 +11,12 @@ var server = require('http').Server(app);
 var io = require('socket.io')(server);
 // mongodb://<dbuser>:<dbpassword>@ds139951.mlab.com:39951/dbchat
 mongoose.connect('mongodb://phiviet:viethoa00@ds139951.mlab.com:39951/dbchat', { useNewUrlParser: true });
-// mongoose.connect('mongodb://localhost:27017/chatDB', { useNewUrlParser: true });
+    // mongoose.connect('mongodb://localhost:27017/chatDB', { useNewUrlParser: true });
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error'));
 db.once('open', function () {
     console.log('connected mongo in port 27017');
-});
+}); 
 
 // path to dist
 app.use(express.static(__dirname + '/dist/APP-CHAT'));
@@ -101,6 +101,19 @@ function deleteUserFromListOnline(username) {
 // router
 const router = require('express').Router();
 router.post('/addUserToListOnline', addUserToListOnline);
+router.delete('/deleteUserOnline/:id',deleteUserOnline);
+
+function deleteUserOnline(req, res, next) {
+    name = req.query.name;
+
+    Online.findOneAndDelete({name:name})
+    .then(data => {
+        res.send(data);
+    })
+    .catch(err => {
+        next(err);
+    })
+}
 
 function addUserToListOnline(req, res, next) {
     body = {

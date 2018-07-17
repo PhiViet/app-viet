@@ -14,6 +14,11 @@ export class UsersService {
         const body = {
             name:name
         };
-        return this.http.post(this.url+'/api/addUserToListOnline', body);
+        return this.http.post(this.url+ '/api/addUserToListOnline', body);
+    }
+
+    // offline
+    deleteUserOnline(name) {
+        return this.http.delete(this.url+ '/api/deleteUserOnline/'+name);
     }
 }
