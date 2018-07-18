@@ -89,7 +89,8 @@ app.get('/*', function (req, res) {
 
 // schema
 var onlineSchema = mongoose.Schema({
-    name: String
+    name: String,
+    time: Date
 })
 
 var Online = mongoose.model('Online', onlineSchema);
