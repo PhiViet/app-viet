@@ -9,9 +9,14 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { RoutingModule } from './app.routes';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ToastrModule, ToastrService } from 'ngx-toastr';
+import { ToastrModule } from 'ngx-toastr';
+// import {EmojiPickerModule} from 'ng-emoji-picker';
+// import { PickerModule } from '@ctrl/ngx-emoji-mart'
+import { MalihuScrollbarModule } from 'ngx-malihu-scrollbar';
+
 import { ChatService } from './chat.service';
 import { HttpClientModule } from '@angular/common/http';
+
 
 @NgModule({
   declarations: [
@@ -25,8 +30,11 @@ import { HttpClientModule } from '@angular/common/http';
     RoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    ToastrModule.forRoot()
-
+    ToastrModule.forRoot(),
+    // EmojiPickerModule
+    // PickerModule
+    MalihuScrollbarModule.forRoot()
+    
   ],
   providers: [
     LoginGuard,

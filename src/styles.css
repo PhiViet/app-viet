@@ -1,6 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~ngx-toastr/toastr.css";
 @import url("https://fonts.googleapis.com/css?family=Josefin+Sans");
+/* @import '~perfect-scrollbar/css/perfect-scrollbar.css'; */
+/* // "node_modules/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.css" */
+/*               "node_modules/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"
+ */
+
 
 .font-jose{
     font-family: 'Josefin Sans', sans-serif;

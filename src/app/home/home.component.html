@@ -30,7 +30,7 @@
     </div>
     <div class="boxmessage right">
         <h5 style="text-align: center">Write Something</h5>
-        <div id="content-mess">
+        <div id="content-mess" #contentmess [scrollTop]="contentmess.scrollHeight">
             <div class="mess" *ngFor='let content of messages'>
                 <p>
                     <b>{{content.username}}</b> :
@@ -53,9 +53,9 @@
             <span class="icon-image">
                 <img src="assets/image.png" width="4%" height="4%" alt="">
             </span>
-            <input class="text-mess" type="text" [(ngModel)]="message" (keyup.enter)="sendMessage()">
+            <input id="input-mess" class="text-mess" type="text" [(ngModel)]="message" (keyup.enter)="sendMessage()">
             <!-- (ngModelChange)="filterStringToYahooIcon(message)" -->
-            <span class="icon-send" (click)="sendMessage()">
+            <span id="btn-send-mess" class="icon-send" (click)="sendMessage()">
                 <img src="assets/send.png" width="4%" height="4%" alt="">
             </span>
         </div>
@@ -78,3 +78,4 @@
             <input type="text" class="text-mess form-control" [(ngModel)]="message" (keyup.enter)="sendMessage()">
             <button class="btn-send btn btn-primary" (click)="sendMessage()">send</button>
         </div> -->
+

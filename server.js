@@ -49,7 +49,7 @@ function listenClient(socket) {
     socket.on("logout", function () {
         var index = arrUsers.indexOf(socket.username);
         arrUsers.splice(index, 1);
-        deleteUserFromListOnline(socket.username);
+        // deleteUserFromListOnline(socket.username);
         socket.broadcast.emit("server-send-users", arrUsers);
     });
 
@@ -76,7 +76,7 @@ function listenClient(socket) {
         arrUsers.splice(index, 1);
         socket.broadcast.emit("server-send-users", arrUsers);
 
-        deleteUserFromListOnline(socket.username);
+        // deleteUserFromListOnline(socket.username);
 
         console.log('DISCONNECT : ' + socket.id);
     });
@@ -117,7 +117,8 @@ function deleteUserOnline(req, res, next) {
 
 function addUserToListOnline(req, res, next) {
     body = {
-        name: req.body.name
+        name: req.body.name,
+        time: new Date()
     }
     var user = new Online(body);
 

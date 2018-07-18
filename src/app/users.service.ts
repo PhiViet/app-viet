@@ -18,7 +18,7 @@ export class UsersService {
     }
 
     // offline
-    deleteUserOnline(name) {
-        return this.http.delete(this.url+ '/api/deleteUserOnline/'+name);
-    }
+    // deleteUserOnline(name) {
+    //     return this.http.delete(this.url+ '/api/deleteUserOnline/'+name);
+    // }
 }

@@ -3,13 +3,13 @@ import { ChatService } from './../chat.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { error } from 'util';
+import { MalihuScrollbarService } from 'ngx-malihu-scrollbar';
 
 @Component({
     selector: 'app-ho',
     templateUrl: 'home.component.html',
     styleUrls: ['home.component.css']
 })
-
 export class HomeComponent implements OnInit, OnDestroy {
 
     // test = '<img src="assets/1.gif" alt="">';
@@ -21,9 +21,13 @@ export class HomeComponent implements OnInit, OnDestroy {
     constructor(
         private chatService: ChatService,
         private toastService: ToastrService,
+        // private mScrollbarService: MalihuScrollbarService,
         private router: Router) { }
 
     ngOnInit() {
+        // this.mScrollbarService.initScrollbar('#content-mess', 
+        // { theme: 'minimal-dark'});.
+
         this.account = JSON.parse(localStorage.getItem('account'));
         this.getMessage();
         this.listOnlineUsers();
@@ -32,28 +36,32 @@ export class HomeComponent implements OnInit, OnDestroy {
     }
 
     sendMessage() {
-        this.message = this.formatStringToYahooIcon(this.message);
+        try {
+            this.message = this.formatStringToYahooIcon(this.message);
+        }
+        catch {
+            this.message = '';
+        }
         this.chatService.sendMessage(this.message);
-        // this.messages.push()
         this.message = '';
-
-        let divMessContent = document.getElementById('content-mess');
-        divMessContent.scrollTop = divMessContent.scrollHeight;
     }
 
-    filterStringToYahooIcon(message) {
-        this.message = this.formatStringToYahooIcon(message);
-    }
+    // filterStringToYahooIcon(message) {
+    //     if(message.length > 0){
+    //         this.message = this.formatStringToYahooIcon(message);
+    //     }
+    // }
 
     formatStringToYahooIcon(message) {
         return message
+            // .replaceb(/:)/g,' <img src="assets/5.gif">')
             // .replace(';))', ' <img src="assets/61.gif"  >')
-            .replace(';;)', ' <img src="assets/5.gif"')
-            .replace('/:)', ' <img src="assets/23.gif"')
-            .replace('=))', ' <img src="assets/24.gif"')
-            .replace('>:)', ' <img src="assets/19.gif"')
-            .replace(':((', ' <img src="assets/20.gif"')
-            .replace(':))', ' <img src="assets/21.gif"')
+            .replace(';;)', ' <img src="assets/5.gif">')
+            .replace('/:)', ' <img src="assets/23.gif">')
+            .replace('=))', ' <img src="assets/24.gif">')
+            .replace('>:)', ' <img src="assets/19.gif">')
+            .replace(':((', ' <img src="assets/20.gif">')
+            .replace(':))', ' <img src="assets/21.gif">')
             .replace(':)', ' <img src="assets/1.gif">')
             .replace(':(', ' <img src="assets/2.gif">')
             .replace(';)', ' <img src="assets/3.gif">')
@@ -156,7 +164,6 @@ export class HomeComponent implements OnInit, OnDestroy {
 
     listOnlineUsers() {
         this.chatService.listOnlineUsersFromSoket().subscribe((data: any) => {
-            // this.listusers = data;
             this.listusers = data.filter(e => e !== this.account.nameAccount);
             // this.listusers = data;
         });

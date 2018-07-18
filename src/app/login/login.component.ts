@@ -15,6 +15,17 @@ export class LoginComponent implements OnInit {
 
     test;
 
+    public customEmojis = [
+        {
+          name: 'Octocat',
+          short_names: ['octocat'],
+          text: '',
+          emoticons: [],
+          keywords: ['github'],
+          imageUrl: 'https://assets-cdn.github.com/images/icons/emoji/octocat.png?v7'
+        },
+      ];
+
     public arrPlaceholerName = ["Sói xám", "Cừu non", "Gà con", "Vịt bầu", "Thỏ nâu"];
     public currentPlaceholerName;
     public currentShowText;
@@ -112,7 +123,7 @@ export class LoginComponent implements OnInit {
 
     checkRegisterSuccess() {
         this.chatService.registerSuccess().subscribe((data) => {
-            this.toastService.success('Đăng nhập thành công !', '', {
+            this.toastService.success(data + 'Đăng nhập thành công !', '', {
                 timeOut: 2000
             });
             localStorage.setItem('account', JSON.stringify({ nameAccount: data }));
