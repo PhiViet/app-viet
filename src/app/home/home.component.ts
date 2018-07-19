@@ -4,6 +4,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { error } from 'util';
 import { MalihuScrollbarService } from 'ngx-malihu-scrollbar';
+import { Title } from '@angular/platform-browser';
 
 @Component({
     selector: 'app-ho',
@@ -19,6 +20,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     public listusers = [];
     public connection;
     constructor(
+        private titleService:Title,
         private chatService: ChatService,
         private toastService: ToastrService,
         // private mScrollbarService: MalihuScrollbarService,
@@ -27,8 +29,10 @@ export class HomeComponent implements OnInit, OnDestroy {
     ngOnInit() {
         // this.mScrollbarService.initScrollbar('#content-mess', 
         // { theme: 'minimal-dark'});.
-
         this.account = JSON.parse(localStorage.getItem('account'));
+        if(this.account.nameAccount) {
+            this.titleService.setTitle(this.account.nameAccount);
+        }
         this.getMessage();
         this.listOnlineUsers();
         // 

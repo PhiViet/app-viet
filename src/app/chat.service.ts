@@ -52,18 +52,16 @@ export class ChatService {
     }
 
     checkLogout() {
-            this.socket.emit('logout');
+        this.socket.emit('logout');
     }
 
     registerSuccess() {
         let observable = new Observable(observer => {
             this.socket.on('server-send-register-success', (data) => {
+
                 this.profile.name = data;
                 observer.next(data);
             });
-            return () => {
-                this.socket.disconnect();
-            }
         });
 
         return observable;

@@ -1,3 +1,4 @@
+import { ChatService } from './chat.service';
 import { Component } from '@angular/core';
 
 @Component({

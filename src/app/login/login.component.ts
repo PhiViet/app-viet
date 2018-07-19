@@ -1,6 +1,6 @@
 import { UsersService } from './../users.service';
 import { ChatService } from './../chat.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import { CurrencyIndex } from '@angular/common/src/i18n/locale_data';
@@ -11,20 +11,20 @@ import { CurrencyIndex } from '@angular/common/src/i18n/locale_data';
     styleUrls: ['login.component.css']
 })
 
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, OnDestroy {
 
     test;
-
+    public subcribeRegisterSuccess;
     public customEmojis = [
         {
-          name: 'Octocat',
-          short_names: ['octocat'],
-          text: '',
-          emoticons: [],
-          keywords: ['github'],
-          imageUrl: 'https://assets-cdn.github.com/images/icons/emoji/octocat.png?v7'
+            name: 'Octocat',
+            short_names: ['octocat'],
+            text: '',
+            emoticons: [],
+            keywords: ['github'],
+            imageUrl: 'https://assets-cdn.github.com/images/icons/emoji/octocat.png?v7'
         },
-      ];
+    ];
 
     public arrPlaceholerName = ["Sói xám", "Cừu non", "Gà con", "Vịt bầu", "Thỏ nâu"];
     public currentPlaceholerName;
@@ -87,20 +87,26 @@ export class LoginComponent implements OnInit {
     }
 
     register() {
-        if (this.nameAccount.length > 0) {
-            this.chatService.registerAUser(this.nameAccount);
-            this.userService.addUsersToOnline(this.nameAccount).subscribe(data => {
-                console.log('data' + data);
-            })
-        }
-        else {
-            this.invalidName();
-        }
-        // return (this.nameAccount.length > 0)
-        //     //register success
-        //     ? this.chatService.registerAUser(this.nameAccount)
-        //     // register fail
-        //     : this.invalidName();
+
+        // if (this.nameAccount.length > 0) {
+        //     this.chatService.registerAUser(this.nameAccount);
+        //     this.userService.addUsersToOnline(this.nameAccount).subscribe(data => {
+        //         console.log('data' + data);
+        //     })
+        // }
+        // else {
+        //     this.invalidName();
+        // }
+        return (this.nameAccount.length > 0)
+            //register success
+            ? (
+                this.chatService.registerAUser(this.nameAccount) &&
+                this.userService.addUsersToOnline(this.nameAccount).subscribe(data => {
+                    console.log('data' + data);
+                })
+            )
+            // register fail
+            : this.invalidName();
 
     }
 
@@ -122,12 +128,16 @@ export class LoginComponent implements OnInit {
     }
 
     checkRegisterSuccess() {
-        this.chatService.registerSuccess().subscribe((data) => {
-            this.toastService.success(data + 'Đăng nhập thành công !', '', {
+        this.subcribeRegisterSuccess = this.chatService.registerSuccess().subscribe((data) => {
+            localStorage.setItem('account', JSON.stringify({ nameAccount: data }));
+            this.toastService.success('Đăng nhập thành công !', '', {
                 timeOut: 2000
             });
-            localStorage.setItem('account', JSON.stringify({ nameAccount: data }));
             this.router.navigate(['/home']);
         });
+    }
+
+    ngOnDestroy() {
+        this.subcribeRegisterSuccess.unsubscribe();
     }
 }
