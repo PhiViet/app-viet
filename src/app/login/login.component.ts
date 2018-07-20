@@ -88,25 +88,25 @@ export class LoginComponent implements OnInit, OnDestroy {
 
     register() {
 
-        // if (this.nameAccount.length > 0) {
-        //     this.chatService.registerAUser(this.nameAccount);
-        //     this.userService.addUsersToOnline(this.nameAccount).subscribe(data => {
-        //         console.log('data' + data);
-        //     })
-        // }
-        // else {
-        //     this.invalidName();
-        // }
-        return (this.nameAccount.length > 0)
-            //register success
-            ? (
-                this.chatService.registerAUser(this.nameAccount) &&
-                this.userService.addUsersToOnline(this.nameAccount).subscribe(data => {
-                    console.log('data' + data);
-                })
-            )
-            // register fail
-            : this.invalidName();
+        if (this.nameAccount.length > 0) {
+            this.chatService.registerAUser(this.nameAccount);
+            this.userService.addUsersToOnline(this.nameAccount).subscribe(data => {
+                console.log('data' + data);
+            })
+        }
+        else {
+            this.invalidName();
+        }
+        // return (this.nameAccount.length > 0)
+        //     //register success
+        //     ? (
+        //         this.chatService.registerAUser(this.nameAccount) &&
+        //         this.userService.addUsersToOnline(this.nameAccount).subscribe(data => {
+        //             console.log('data' + data);
+        //         })
+        //     )
+        //     // register fail
+        //     : this.invalidName();
 
     }
 
