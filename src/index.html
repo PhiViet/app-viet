@@ -21,16 +21,35 @@
   <app-root></app-root>
 </body>
 
-<!-- <script>
-    var input = document.getElementById("input-mess");
-    var contentMess = document.getElementById('content-mess');
-    contentMess.scrollTop = contentMess.scrollHeight;
+<script>
+  var popup = document.getElementById("popup");
+  var inputmess = document.getElementById("inputmess");
+  // var contentMess = document.getElementById('content-mess');
+  // contentMess.scrollTop = contentMess.scrollHeight;
 
-    input.addEventListener("keyup", function (event) {
-        event.preventDefault();
-        if (event.keyCode === 13) {
-          contentMess.scrollTop = contentMess.scrollHeight;
-        }
-    });
-</script> -->
+  // popup.click(eventClickPopup);
+
+  // function eventClickPopup() {
+
+  //   console.log('vo');
+  // }
+  popup.addEventListener('click', function (event) {
+    var isOpenpopup = document.getElementsByClassName('hidden');
+    if (isOpenpopup.length > 0) {
+      document.getElementById('row-popup').classList.remove('hidden');
+      popup.src = 'assets/smile_emoticons.png';
+    }
+    else {
+      document.getElementById('row-popup').classList.add('hidden');
+      popup.src = 'assets/emoji.png';
+    }
+  });
+
+  inputmess.addEventListener('focus', function () {
+    document.getElementById('row-popup').classList.add('hidden');
+    popup.src = 'assets/emoji.png';
+  })
+
+</script>
+
 </html>

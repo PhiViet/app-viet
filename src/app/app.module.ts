@@ -1,3 +1,4 @@
+import { SortPipe } from './pipe/sort.pipe';
 import { UsersService } from './users.service';
 import { LoginGuard } from './login.route.guard';
 import { HomeComponent } from './home/home.component';
@@ -22,7 +23,9 @@ import { HttpClientModule } from '@angular/common/http';
   declarations: [
     AppComponent,
     LoginComponent,
-    HomeComponent
+    HomeComponent,
+    SortPipe
+
   ],
   imports: [
     BrowserModule,
@@ -39,7 +42,7 @@ import { HttpClientModule } from '@angular/common/http';
   providers: [
     LoginGuard,
     ChatService,
-    UsersService
+    UsersService,
   ],
   bootstrap: [AppComponent]
 })
