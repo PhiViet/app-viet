@@ -14,6 +14,7 @@ import { Title } from '@angular/platform-browser';
 export class HomeComponent implements OnInit, OnDestroy {
 
     // test = '<img src="assets/1.gif" alt="">';
+    public popupImgSrc = 'assets/emoji.png';
     public account;
     public message = '';
     public messages = [];
@@ -35,6 +36,24 @@ export class HomeComponent implements OnInit, OnDestroy {
         // 
         this.checkExistedAccount();
         this.emojis.sort();
+    }
+
+    popupSetUp() {
+        var popup = document.getElementById("popupsetup");
+        var isOpenpopup = document.getElementsByClassName('hidden');
+        if (isOpenpopup.length > 0) {
+            document.getElementById('row-popup').classList.remove('hidden');
+            this.popupImgSrc = 'assets/smile_emoticons.png';
+        }
+        else {
+            document.getElementById('row-popup').classList.add('hidden');
+            this.popupImgSrc = 'assets/emoji.png';
+        }
+    }
+
+    focusInputMess() {
+        document.getElementById('row-popup').classList.add('hidden');
+        this.popupImgSrc = 'assets/emoji.png';
     }
 
     sendMessage() {
@@ -140,7 +159,6 @@ export class HomeComponent implements OnInit, OnDestroy {
     formatStringToYahooIcon(message: string) {
         this.emojis.forEach(emoji => {
             if (message.indexOf(emoji.code) > -1) {
-                console.log(emoji);
                 message = message.replace(new RegExp(emoji.codeReg, 'g'), `<img src="assets/${emoji.img}.gif">`)
             }
         })
@@ -186,7 +204,6 @@ export class HomeComponent implements OnInit, OnDestroy {
         let emo = this.emojis.filter(em => {
             return em && em.img == imgemoji;
         })
-        console.log(emo[0].code);
         this.message = this.message + emo[0].code;
     }
     ngOnDestroy() {

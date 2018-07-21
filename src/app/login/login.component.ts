@@ -91,7 +91,6 @@ export class LoginComponent implements OnInit, OnDestroy {
         if (this.nameAccount.length > 0) {
             this.chatService.registerAUser(this.nameAccount);
             this.userService.addUsersToOnline(this.nameAccount).subscribe(data => {
-                console.log('data' + data);
             })
         }
         else {

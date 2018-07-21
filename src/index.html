@@ -19,37 +19,45 @@
 
 <body>
   <app-root></app-root>
+  
 </body>
-
 <script>
-  var popup = document.getElementById("popup");
-  var inputmess = document.getElementById("inputmess");
-  // var contentMess = document.getElementById('content-mess');
-  // contentMess.scrollTop = contentMess.scrollHeight;
+    // var popup = document.getElementById('popupsetup');
+    // var inputmess = document.getElementById("inputmess");
+    // popup.addEventListener('click', popupSetup);
+    // inputmess.addEventListener("click", handler2);
+    // function popupSetup() {
+    //   var isOpenpopup = document.getElementsByClassName('hidden');
+    //   if (isOpenpopup.length > 0) {
+    //     document.getElementById('row-popup').classList.remove('hidden');
+    //     popup.src = 'assets/smile_emoticons.png';
+    //   }
+    //   else {
+    //     document.getElementById('row-popup').classList.add('hidden');
+    //     popup.src = 'assets/emoji.png';
+    //   }
+    // }
+    // var inputmess = document.getElementById("inputmess");
+      // popup.addEventListener("click", function () {
+        // console.log('vo');
+        // var isOpenpopup = document.getElementsByClassName('hidden');
+        // if (isOpenpopup.length > 0) {
+        //   document.getElementById('row-popup').classList.remove('hidden');
+        //   popup.src = 'assets/smile_emoticons.png';
+        // }
+        // else {
+        //   document.getElementById('row-popup').classList.add('hidden');
+        //   popup.src = 'assets/emoji.png';
+        // }
+      // });
 
-  // popup.click(eventClickPopup);
 
-  // function eventClickPopup() {
+    // inputmess.addEventListener('click', function () {
+      // document.getElementById('row-popup').classList.add('hidden');
+      // popup.src = 'assets/emoji.png';
+    // });
 
-  //   console.log('vo');
-  // }
-  popup.addEventListener('click', function (event) {
-    var isOpenpopup = document.getElementsByClassName('hidden');
-    if (isOpenpopup.length > 0) {
-      document.getElementById('row-popup').classList.remove('hidden');
-      popup.src = 'assets/smile_emoticons.png';
-    }
-    else {
-      document.getElementById('row-popup').classList.add('hidden');
-      popup.src = 'assets/emoji.png';
-    }
-  });
+  </script>
 
-  inputmess.addEventListener('focus', function () {
-    document.getElementById('row-popup').classList.add('hidden');
-    popup.src = 'assets/emoji.png';
-  })
-
-</script>
 
 </html>
