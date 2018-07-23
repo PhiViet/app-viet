@@ -51,9 +51,10 @@ export class HomeComponent implements OnInit, OnDestroy {
         }
     }
 
-    focusInputMess() {
+    focusEmojiPopup() {
         document.getElementById('row-popup').classList.add('hidden');
         this.popupImgSrc = 'assets/emoji.png';
+        alert(1);
     }
 
     sendMessage() {
@@ -302,5 +303,5 @@ export class HomeComponent implements OnInit, OnDestroy {
         // .replace(';)', ' <img src="assets/75.gif"  >')
         // .replace(':(', ' <img src="assets/76.gif"  >')
         // .replace(';)', ' <img src="assets/77.gif"  >')
-        // .replace(':(', ' <img src="assets/78.gif"  >')
+        // .replace(':(', ' <i  mg src="assets/78.gif"  >')
         // .replace(';)', ' <img src="assets/79.gif"  >')

@@ -1,4 +1,89 @@
-<div class="home font-jose">
+<!-- homepage -->
+<div class="home">
+    <div class="contain font-jose">
+        <!-- navbar -->
+        <div class="header">
+            <span class="infor">
+                Hello {{account.nameAccount}}
+            </span>
+            <span class="logout" (click)="logout()">
+                <i class="fas fa-sign-out-alt"></i> Logout
+            </span>
+        </div>
+
+        <!-- content -->
+        <div class="content">
+            <!-- list online -->
+            <div class="right-content">
+                <div class="list-online" *ngIf="listusers.length == 0">
+                    <div class="client">
+                        <div class="dot"></div>
+                        <div class="name">abc</div>
+                    </div>
+
+                    <div class="client">
+                        <div class="dot"></div>
+                        <div class="name">abc</div>
+                    </div>
+                    <div class="client">
+                        <div class="dot"></div>
+                        <div class="name">abc</div>
+                    </div>
+                </div>
+
+                <div class="nothing-online" *ngIf="listusers.length > 0">
+                    <img class="img-face" src="assets/sad-face.ico" width="50%" height="50%" alt="">
+                    <br> không có ai hết !!
+                </div>
+
+            </div>
+            <div class="left-content">
+                <!-- text area -->
+                <div class="text-area">
+                    <h5>Write Something</h5>
+                    <div id="content-mess" #contentmess [scrollTop]="contentmess.scrollHeight">
+                        <div class="mess" *ngFor='let content of messages'>
+                            <p>
+                                <b>{{content.username}}</b> :
+                                <span [innerHTML]='content.message'></span>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="input">
+                        <span class="icon-image">
+                            <img src="assets/image.png" width="4%" height="4%" alt="">
+                        </span>
+                        <input id="inputmess" class="text-mess" type="text" [(ngModel)]="message" (keyup.enter)="sendMessage()">
+                        <span class="emoji">
+                            <img id="popupsetup" src="{{popupImgSrc}}" (click)="popupSetUp()" width="3%" height="3%" alt="">
+                        </span>
+                        <span id="btn-send-mess" class="icon-send" (click)="sendMessage()">
+                            <img src="assets/send.png" width="4%" height="4%" alt="">
+                        </span>
+                        <div id="row-popup" class="row-popup hidden" >
+            
+                            <div id="closepopup" class="emoji-popup">
+                                <div class="list-icon">
+                                    <img *ngFor="let emoji of emojis | sort" src="assets/{{emoji}}.gif" (click)="chooseEmoji(emoji)">
+                                </div>
+            
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- footer -->
+        <div class="footer">
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- <div class="home font-jose">
     <div class="header">
         <span class="infor">
             Hello {{account.nameAccount}}
@@ -14,14 +99,6 @@
                 <div class="dot"></div>
                 <div class="name">{{user}}</div>
             </div>
-            <!-- <div class="client">
-                <div class="dot"></div>
-                <div class="name">Phi Viet</div>
-            </div>
-            <div class="client">
-                <div class="dot"></div>
-                <div class="name">Phi Viet</div>
-            </div> -->
         </div>
     </div>
     <div class="listuser left" *ngIf="listusers.length == 0">
@@ -35,7 +112,6 @@
                 <p>
                     <b>{{content.username}}</b> :
                     <span [innerHTML]='content.message'></span>
-                    <!-- {{content.message}} -->
                 </p>
             </div>
         </div>
@@ -62,7 +138,7 @@
         </div>
 
     </div>
-</div>
+</div> -->
 
 <!-- <img src="assets/1.gif">
                         <img src="assets/2.gif">
