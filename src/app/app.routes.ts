@@ -9,12 +9,12 @@ import { HomeModule } from './home/home.module';
 
 const routes: Routes = [
     { path: '', pathMatch: 'full', redirectTo: 'login' },
-    // { path: 'login', component: LoginComponent },
-    { path: 'login', loadChildren:()=> LoginModule},
+    { path: 'login', component: LoginComponent },
+    // { path: 'login', loadChildren:()=> LoginModule},
 
     // { path: 'home', component: HomeComponent, canActivate: [LoginGuard] },
-    // { path: 'home', loadChildren: './home/home.module#HomeModule', canActivate: [LoginGuard] },
-    { path: 'home', loadChildren:()=> HomeModule, canActivate: [LoginGuard] },
+    { path: 'home', loadChildren: './home/home.module#HomeModule', canActivate: [LoginGuard] },
+    // { path: 'home', loadChildren:()=> HomeModule, canActivate: [LoginGuard] },
 
 ];
 
