@@ -15,23 +15,14 @@
         <div class="content">
             <!-- list online -->
             <div class="right-content">
-                <div class="list-online" *ngIf="listusers.length == 0">
-                    <div class="client">
+                <div class="list-online" *ngIf="listusers.length > 0">
+                    <div *ngFor='let user of listusers' class="client">
                         <div class="dot"></div>
-                        <div class="name">abc</div>
-                    </div>
-
-                    <div class="client">
-                        <div class="dot"></div>
-                        <div class="name">abc</div>
-                    </div>
-                    <div class="client">
-                        <div class="dot"></div>
-                        <div class="name">abc</div>
+                        <div class="name">{{user}}</div>
                     </div>
                 </div>
 
-                <div class="nothing-online" *ngIf="listusers.length > 0">
+                <div class="nothing-online" *ngIf="listusers.length === 0">
                     <img class="img-face" src="assets/sad-face.ico" width="50%" height="50%" alt="">
                     <br> không có ai hết !!
                 </div>
@@ -60,13 +51,13 @@
                         <span id="btn-send-mess" class="icon-send" (click)="sendMessage()">
                             <img src="assets/send.png" width="4%" height="4%" alt="">
                         </span>
-                        <div id="row-popup" class="row-popup hidden" >
-            
+                        <div id="row-popup" class="row-popup hidden">
+
                             <div id="closepopup" class="emoji-popup">
                                 <div class="list-icon">
                                     <img *ngFor="let emoji of emojis | sort" src="assets/{{emoji}}.gif" (click)="chooseEmoji(emoji)">
                                 </div>
-            
+
                             </div>
                         </div>
                     </div>

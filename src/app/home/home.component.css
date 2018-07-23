@@ -34,18 +34,19 @@
     width: 65%;
     float: left;
 }
-.list-online, .nothing-online{
-    background-color: gray;
+.list-online{
     margin:32px 0 0 32px;
     width: 200px;
 }
 
+.nothing-online{
+    
+}
+
 .client{
     width: 100%;
-    /* text-align: center; */
     padding: 5px 0;
     float: left;
-    background-color: gray;
 
     border: 2px solid #dedede;
     background-color: #f1f1f1;
