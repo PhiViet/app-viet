@@ -1,7 +1,7 @@
+import { ChatService } from './chat.service';
 import { SortPipe } from './pipe/sort.pipe';
 import { UsersService } from './users.service';
 import { LoginGuard } from './login.route.guard';
-import { HomeComponent } from './home/home.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -11,20 +11,15 @@ import { LoginComponent } from './login/login.component';
 import { RoutingModule } from './app.routes';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
-// import {EmojiPickerModule} from 'ng-emoji-picker';
-// import { PickerModule } from '@ctrl/ngx-emoji-mart'
-import { MalihuScrollbarModule } from 'ngx-malihu-scrollbar';
 
-import { ChatService } from './chat.service';
 import { HttpClientModule } from '@angular/common/http';
+import { LoginModule } from './login/login.module';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,
-    HomeComponent,
-    SortPipe
+    // LoginComponent,
 
   ],
   imports: [
@@ -34,15 +29,15 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserAnimationsModule,
     HttpClientModule,
     ToastrModule.forRoot(),
-    // EmojiPickerModule
-    // PickerModule
-    MalihuScrollbarModule.forRoot()
+
+    // HomeModule,
+    LoginModule
     
   ],
   providers: [
     LoginGuard,
-    ChatService,
     UsersService,
+    ChatService
   ],
   bootstrap: [AppComponent]
 })

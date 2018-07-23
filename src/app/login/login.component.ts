@@ -15,16 +15,6 @@ export class LoginComponent implements OnInit, OnDestroy {
 
     test;
     public subcribeRegisterSuccess;
-    public customEmojis = [
-        {
-            name: 'Octocat',
-            short_names: ['octocat'],
-            text: '',
-            emoticons: [],
-            keywords: ['github'],
-            imageUrl: 'https://assets-cdn.github.com/images/icons/emoji/octocat.png?v7'
-        },
-    ];
 
     public arrPlaceholerName = ["Sói xám", "Cừu non", "Gà con", "Vịt bầu", "Thỏ nâu"];
     public currentPlaceholerName;
@@ -96,17 +86,6 @@ export class LoginComponent implements OnInit, OnDestroy {
         else {
             this.invalidName();
         }
-        // return (this.nameAccount.length > 0)
-        //     //register success
-        //     ? (
-        //         this.chatService.registerAUser(this.nameAccount) &&
-        //         this.userService.addUsersToOnline(this.nameAccount).subscribe(data => {
-        //             console.log('data' + data);
-        //         })
-        //     )
-        //     // register fail
-        //     : this.invalidName();
-
     }
 
     invalidName() {

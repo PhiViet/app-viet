@@ -87,7 +87,7 @@
     /* margin: 5px 0; */
 }
 
-.active, .menu:hover, .client:hover{
+.menu:hover, .client:hover{
     background-color: #d9dce2;
 }
 
