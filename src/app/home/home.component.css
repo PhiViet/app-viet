@@ -89,27 +89,36 @@ h5{
 #content-mess{
     height: 50vh;
     overflow: auto;
+    padding: 15px 0;
+    /* overflow: -moz-scrollbars-vertical;  */
+    overflow-y: scroll;
+}
+
+#content-mess::-webkit-scrollbar { 
+    display: none; 
 }
 
 .img-face{
     animation: rotation 2s normal linear;
 }
 
+.mess {
+    /* border: 2px solid #dedede; */
+    background-color: #f1f1f1;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 0 15px 10px 15px;
+    width: 60%;
+}
+
 .mess p {
     padding:0;
+    margin: 0;
 }
 
 @keyframes rotation {
     from {-webkit-transform: rotate(0deg);}
     to   {-webkit-transform: rotate(360deg);}
-}
-
-.mess {
-    border: 2px solid #dedede;
-    background-color: #f1f1f1;
-    border-radius: 5px;
-    padding: 10px;
-    margin: 10px 0;
 }
 
 .input {
