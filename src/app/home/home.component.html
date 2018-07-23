@@ -16,8 +16,17 @@
 
             <div class="left-content">
                 <div class="list-menu">
-                    <div class="menu" [routerLink]="menu.route" routerLinkActive="active" *ngFor="let menu of listmenu">
+                    <!-- <div class="menu" [routerLink]="menu.route" routerLinkActive="active" *ngFor="let menu of listmenu">
                         {{menu.name}}
+                    </div> -->
+                    <div class="menu" routerLink="/home">
+                        Home
+                    </div>
+                    <div class="menu">
+                        Music
+                    </div>
+                    <div class="menu">
+                        News
                     </div>
                 </div>
             </div>
