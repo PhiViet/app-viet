@@ -36,9 +36,9 @@ export class ChatComponent implements OnInit {
 
   onClickScreen(event) {
     // case input
-    if (event.target.id === 'input') {
-      alert(1);
-    }
+    // if (event.target.id === 'input') {
+    //   alert(1);
+    // }
 
 
     // case emoji
