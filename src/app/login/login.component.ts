@@ -111,7 +111,7 @@ export class LoginComponent implements OnInit, OnDestroy {
             this.toastService.success('Đăng nhập thành công !', '', {
                 timeOut: 2000
             });
-            this.router.navigate(['/home']);
+            this.router.navigate(['/dashboard/chat']);
         });
     }
 

@@ -44,6 +44,7 @@
 .left-content {
     width: 22%;
     float: left;
+    height: 100vh;
 }
 
 .list-menu, .list-online {

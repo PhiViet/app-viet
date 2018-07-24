@@ -1,10 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { ChatService } from '../../chat.service';
+
+
 
 @Component({
   selector: 'app-chat',
   templateUrl: './chat.component.html',
-  styleUrls: ['./chat.component.css']
+  styleUrls: ['./chat.component.css'],
+  host: {
+    '(document:click)': 'onClickScreen($event)'
+  }
 })
 export class ChatComponent implements OnInit {
 
@@ -14,6 +19,8 @@ export class ChatComponent implements OnInit {
   public messages = [];
   public listusers = [];
   public connection;
+  private isOpenpopup = document.getElementsByClassName('hidden');
+
 
   constructor(
     private chatService: ChatService,
@@ -27,29 +34,42 @@ export class ChatComponent implements OnInit {
     this.listOnlineUsers();
   }
 
+  onClickScreen(event) {
+    // case input
+    if (event.target.id === 'input') {
+      alert(1);
+    }
+
+
+    // case emoji
+    if (event.target.id === 'popupsetup') {
+
+      return (this.isOpenpopup.length > 0)
+        ? this.openPopUpEmoji()
+        : this.closePopUpEmoji()
+    }
+
+    else if (event.target.id !== 'popup') {
+      document.getElementById('row-popup').classList.add('hidden');
+      this.popupImgSrc = 'assets/emoji.png';
+    }
+
+  }
+
+  openPopUpEmoji() {
+    document.getElementById('row-popup').classList.remove('hidden');
+    this.popupImgSrc = 'assets/smile_emoticons.png';
+  }
+
+  closePopUpEmoji() {
+    document.getElementById('row-popup').classList.add('hidden');
+    this.popupImgSrc = 'assets/emoji.png';
+  }
+
   getMessage() {
     this.connection = this.chatService.getMessages().subscribe(message => {
       this.messages.push(message);
     })
-  }
-
-  popupSetUp() {
-    var popup = document.getElementById("popupsetup");
-    var isOpenpopup = document.getElementsByClassName('hidden');
-    if (isOpenpopup.length > 0) {
-      document.getElementById('row-popup').classList.remove('hidden');
-      this.popupImgSrc = 'assets/smile_emoticons.png';
-    }
-    else {
-      document.getElementById('row-popup').classList.add('hidden');
-      this.popupImgSrc = 'assets/emoji.png';
-    }
-  }
-
-  focusEmojiPopup() {
-    document.getElementById('row-popup').classList.add('hidden');
-    this.popupImgSrc = 'assets/emoji.png';
-    alert(1);
   }
 
   sendMessage() {

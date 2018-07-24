@@ -1,16 +1,19 @@
-import { MenuComponent } from './menu/menu.component';
+import { MusicComponent } from './music/music.component';
 import { ChatComponent } from './chat/chat.component';
 import { HomeComponent } from './home.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { MenuComponent } from './menu/menu.component';
+import { NewsComponent } from './news/news.component';
 
 const routes: Routes = [
+    { path: '', pathMatch: 'full', redirectTo: '' },
     {
-        path: '', pathMatch: 'full', component: HomeComponent,
+        path: '', component: HomeComponent,
         children: [
-            { path: '', pathMatch: 'full', component: ChatComponent },
-            { path: 'music', component: MenuComponent },
-            // { path: 'news', component: ChatComponent },
+            { path: 'chat',pathMatch: 'full', component: ChatComponent },
+            { path: 'music', component: MusicComponent },
+            { path: 'news', component: NewsComponent },
         ]
     },
 ];

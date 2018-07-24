@@ -1,10 +1,10 @@
 import { ToastrService } from 'ngx-toastr';
 import { ChatService } from './../chat.service';
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, SystemJsNgModuleLoader } from '@angular/core';
 import { Router } from '@angular/router';
 import { error } from 'util';
 import { MalihuScrollbarService } from 'ngx-malihu-scrollbar';
-import { Title } from '@angular/platform-browser';
+// import { Title } from '@angular/platform-browser';
 
 @Component({
     selector: 'app-ho',
@@ -17,30 +17,30 @@ export class HomeComponent implements OnInit, OnDestroy {
     public listmenu = [
         {
             name: 'Home',
-            route: '/home'
+            route: 'chat'
         },
         {
             name: 'Music',
-            route: '/music'
+            route: 'music'
         },
         {
             name: 'News',
-            route: '/news'
+            route: 'news'
         }
     ];
     public popupImgSrc = 'assets/emoji.png';
     public account;
     constructor(
-        private titleService: Title,
+        // private titleService: Title,
         private chatService: ChatService,
         private toastService: ToastrService,
         private router: Router) { }
 
     ngOnInit() {
         this.account = JSON.parse(localStorage.getItem('account'));
-        if (this.account.nameAccount) {
-            this.titleService.setTitle(this.account.nameAccount);
-        }
+        // if (this.account.nameAccount) {
+        //     this.titleService.setTitle(this.account.nameAccount);
+        // }
         this.checkExistedAccount();
     }
 

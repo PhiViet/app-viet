@@ -1,6 +1,6 @@
 <div class="center-content">
     <!-- text area -->
-    <div class="text-area">
+    <div id="textarea" class="text-area">
         <h5>Write Something</h5>
         <div id="content-mess" #contentmess [scrollTop]="contentmess.scrollHeight">
             <div class="mess" *ngFor='let content of messages'>
@@ -10,20 +10,20 @@
                 </p>
             </div>
         </div>
-        <div class="input">
+        <div id="input" class="input">
             <span class="icon-image">
                 <img src="assets/image.png" width="4%" height="4%" alt="">
             </span>
             <input id="inputmess" class="text-mess" type="text" [(ngModel)]="message" (keyup.enter)="sendMessage()">
             <span class="emoji">
-                <img id="popupsetup" src="{{popupImgSrc}}" (click)="popupSetUp()" width="3%" height="3%" alt="">
+                <img id="popupsetup" src="{{popupImgSrc}}" width="3%" height="3%" alt="">
             </span>
             <span id="btn-send-mess" class="icon-send" (click)="sendMessage()">
                 <img src="assets/send.png" width="4%" height="4%" alt="">
             </span>
             <div id="row-popup" class="row-popup hidden">
 
-                <div id="closepopup" class="emoji-popup">
+                <div id="popup" class="emoji-popup">
                     <div class="list-icon">
                         <img *ngFor="let emoji of emojis | sort" src="assets/{{emoji}}.gif" (click)="chooseEmoji(emoji)">
                     </div>
