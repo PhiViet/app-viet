@@ -1,5 +1,6 @@
-/* @import url("https://fonts.googleapis.com/css?family=Indie+Flower|Raleway"); */
+@import url("https://fonts.googleapis.com/css?family=Dancing+Script|Montserrat");
 .home {
+
     /* background-image: url('/assets/wallpaper.jpg'); */
     height: 100vh;
     background-position: center;
@@ -18,21 +19,33 @@
     width: 100%;
     text-align: right;
     padding: 1% 0;
-    font-family: 'Raleway', sans-serif;
-    font-size: 15px;
+    font-family: 'Montserrat', sans-serif;
+    text-transform: uppercase;
+
 }
 
 .infor{
+    font-size: 13px;
     font-weight: 600;
+    padding-right: 10px; 
 }
 
 .logout{
-    padding-left: 15px;
+    background-color: #e0a905;
+    margin-left : 10px;
+    padding: 8px 16px 8px; 
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 500;
+    color: white;
+    border: none;
+    width: 55px;
 }
-
 .logout:hover{
     cursor: pointer;
-    color: red;
+    padding: 10px 18px 9px;
+    font-weight: 600;
+
 }
 
 .content{
@@ -44,7 +57,7 @@
 .left-content {
     width: 22%;
     float: left;
-    height: 100vh;
+    height: 60vh;
 }
 
 .list-menu, .list-online {

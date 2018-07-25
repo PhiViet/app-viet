@@ -1,45 +1,5 @@
 /* @import url("https://fonts.googleapis.com/css?family=Indie+Flower|Raleway"); */
-.home {
-    /* background-image: url('/assets/wallpaper.jpg'); */
-    height: 100vh;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    
-}
-.contain {
-    width: 80%;
-    margin: 0 auto;
-    /* color: white; */
-}
 
-.header{
-    /* background-color: blue; */
-    width: 100%;
-    text-align: right;
-    padding: 1% 0;
-    font-family: 'Raleway', sans-serif;
-    font-size: 15px;
-}
-
-.infor{
-    font-weight: 600;
-}
-
-.logout{
-    padding-left: 15px;
-}
-
-.logout:hover{
-    cursor: pointer;
-    color: red;
-}
-
-.content{
-    width: 100%;
-    height: auto;
-    margin-top:1%;
-}
 
 .left-content {
     width: 22%;
@@ -87,7 +47,7 @@
     /* margin: 5px 0; */
 }
 
-.menu:hover, .client:hover{
+h5:hover, .client:hover{
     background-color: #d9dce2;
 }
 
@@ -123,6 +83,9 @@
     .input {
         border-top: 2px solid #dedede;
     }
+    h5{
+        background-color: paleturquoise;
+    }
 }
 
 h5{
@@ -131,6 +94,7 @@ h5{
     text-align: center;
     /* font-family: 'Indie Flower';    */
 }
+
 
 #content-mess{
     height: 50vh;
@@ -218,4 +182,11 @@ h5{
 
 .hidden-emoji{
     visibility: hidden;
+}
+
+.message-box{
+    position: fixed;
+    width: 300px;
+    bottom: 10px;
+    right: 10px;
 }

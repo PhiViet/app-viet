@@ -48,12 +48,6 @@ export class ChatComponent implements OnInit {
     if (event.target.id !== 'popup' && event.target.id !== 'popupsetup') {
       this.closePopUpEmoji();
     }
-
-
-  }
-
-  setupInput(event) {
-    console.log(event);
   }
 
   setupPopup() {
@@ -70,6 +64,10 @@ export class ChatComponent implements OnInit {
   closePopUpEmoji() {
     document.getElementById('row-popup').classList.add('hidden-emoji');
     this.popupImgSrc = 'assets/emoji.png';
+  }
+
+  TakeAMessage(name){
+    console.log(name);
   }
 
   getMessage() {
