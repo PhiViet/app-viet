@@ -6,7 +6,7 @@ import { ChatService } from '../../chat.service';
 @Component({
   selector: 'app-chat',
   templateUrl: './chat.component.html',
-  styleUrls: ['./chat.component.css'],
+  styleUrls: ['./chat.component.scss'],
   host: {
     '(document:click)': 'onClickScreen($event)'
   }
@@ -19,8 +19,8 @@ export class ChatComponent implements OnInit {
   public messages = [];
   public listusers = [];
   public connection;
-  private isOpenpopup = document.getElementsByClassName('hidden');
-
+  private isOpenpopup = document.getElementsByClassName('hidden-emoji');
+  private box = document.getElementsByClassName('box');
 
   constructor(
     private chatService: ChatService,
@@ -34,35 +34,41 @@ export class ChatComponent implements OnInit {
     this.listOnlineUsers();
   }
 
-  onClickScreen(event) {
-    // case input
-    // if (event.target.id === 'input') {
-    //   alert(1);
-    // }
+  focusInput() {
+    document.getElementById('textarea').classList.add('box');
+  }
 
-
-    // case emoji
-    if (event.target.id === 'popupsetup') {
-
-      return (this.isOpenpopup.length > 0)
-        ? this.openPopUpEmoji()
-        : this.closePopUpEmoji()
-    }
-
-    else if (event.target.id !== 'popup') {
-      document.getElementById('row-popup').classList.add('hidden');
-      this.popupImgSrc = 'assets/emoji.png';
-    }
+  focusOutInput() {
+    document.getElementById('textarea').classList.remove('box');
 
   }
 
+  onClickScreen(event) {
+  
+    if (event.target.id !== 'popup' && event.target.id !== 'popupsetup') {
+      this.closePopUpEmoji();
+    }
+
+
+  }
+
+  setupInput(event) {
+    console.log(event);
+  }
+
+  setupPopup() {
+    return (this.isOpenpopup.length > 0)
+      ? this.openPopUpEmoji()
+      : this.closePopUpEmoji()
+  }
+
   openPopUpEmoji() {
-    document.getElementById('row-popup').classList.remove('hidden');
+    document.getElementById('row-popup').classList.remove('hidden-emoji');
     this.popupImgSrc = 'assets/smile_emoticons.png';
   }
 
   closePopUpEmoji() {
-    document.getElementById('row-popup').classList.add('hidden');
+    document.getElementById('row-popup').classList.add('hidden-emoji');
     this.popupImgSrc = 'assets/emoji.png';
   }
 

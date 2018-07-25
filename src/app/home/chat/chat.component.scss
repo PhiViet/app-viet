@@ -111,10 +111,18 @@
 }
 
 
-.text-area{
+.text-area{ 
     float: left;
     width: 100%;
+    /* box-shadow: 0 1px 4px rgba(0, 0, 0, .3); */
+    border: 1px solid #d9dce2;
+}
+
+.box{
     box-shadow: 0 1px 4px rgba(0, 0, 0, .3);
+    .input {
+        border-top: 2px solid #dedede;
+    }
 }
 
 h5{
@@ -160,7 +168,7 @@ h5{
 }
 
 .input {
-    border-top: 2px solid #dedede;
+    border-top: 1px solid #dedede;
     background-color: white;
     padding: 10px;
     /* margin: 10px 0; */
@@ -206,4 +214,8 @@ h5{
 .list-icon>img:hover{
     background-color:rgb(107, 171, 255);
     z-index: 999;
+}
+
+.hidden-emoji{
+    visibility: hidden;
 }

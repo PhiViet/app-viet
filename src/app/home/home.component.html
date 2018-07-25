@@ -19,18 +19,8 @@
                     <div class="menu" [routerLink]="menu.route" routerLinkActive="active" *ngFor="let menu of listmenu">
                         {{menu.name}}
                     </div>
-                    <!-- <div class="menu" routerLink="/chat" routerLinkActive="active">
-                        Home
-                    </div>
-                    <div class="menu" routerLink="/chat">
-                        Music
-                    </div>
-                    <div class="menu">
-                        News
-                    </div> -->
                 </div>
             </div>
-            <!-- <app-chat></app-chat> -->
             <router-outlet></router-outlet>
         </div>
 
