@@ -7,7 +7,7 @@ import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 })
 export class DoingComponent implements OnInit, OnDestroy{
 
-  private doing = 'Doing';
+  public doing = 'Doing';
   constructor() { }
   private setDotLoading
   @Input() name: String;
