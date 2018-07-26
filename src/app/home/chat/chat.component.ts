@@ -33,7 +33,7 @@ export class ChatComponent implements OnInit {
     this.account = JSON.parse(localStorage.getItem('account'));
 
     this.getMessage();
-    // this.listOnlineUsers();
+    this.listOnlineUsers();
   }
 
   focusInput() {
@@ -142,11 +142,11 @@ export class ChatComponent implements OnInit {
     this.message = message;
   }
 
-  // listOnlineUsers() {
-  //   this.chatService.listOnlineUsersFromSoket().subscribe((data: any) => {
-  //     this.listusers = data.filter(e => e !== this.account.nameAccount);
-  //   });
-  // }
+  listOnlineUsers() {
+    this.chatService.listOnlineUsersFromSoket().subscribe((data: any) => {
+      this.listusers = data.filter(e => e !== this.account.nameAccount);
+    });
+  }
 
   chooseEmoji(imgemoji) {
     let emo = this.emojis.filter(em => {

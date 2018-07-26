@@ -20,6 +20,7 @@ export class OnlineComponent implements OnInit {
   ngOnInit() {
     this.account = JSON.parse(localStorage.getItem('account'));
     this.listOnlineUsers();
+    // this.list();
   }
 
   listOnlineUsers() {
@@ -42,4 +43,7 @@ export class OnlineComponent implements OnInit {
     });
   }
 
+  // list(){
+  //   this.chatService.list();
+  // }
 }

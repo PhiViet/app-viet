@@ -9,10 +9,10 @@ export class ChatService {
     public profile = {
         name: ''
     };
-    private url = 'https://app-vietchat.herokuapp.com';
-    // private url = 'http://localhost:8080';
+    // private url = 'https://app-vietchat.herokuapp.com';
+    private url = 'http://localhost:8080';
     constructor() {
-        this.socket = io(this.url);
+        this.socket = io(this.url,{'multiplex': false});
     }
 
     sendMessage(message) {
@@ -22,7 +22,6 @@ export class ChatService {
 
     getMessages() {
         let observable = new Observable(observer => {
-            // this.socket = io(this.url);
             this.socket.on('server-send-message', (data) => {
                 observer.next(data);
             });
@@ -51,9 +50,6 @@ export class ChatService {
         return observable;
     }
 
-    checkLogout() {
-        this.socket.emit('logout');
-    }
 
     registerSuccess() {
         let observable = new Observable(observer => {
@@ -80,11 +76,24 @@ export class ChatService {
                 observer.next(data);
             });
 
-            // return () => {
-            //     this.socket.disconnect();
-            // }
         });
 
         return observable;
     }
+
+    
+    checkLogout() {
+        this.socket.emit('logout');
+    }
+
+    // list() {
+    //     this.socket.on('server-send-online',(data) => {
+    //     })
+    // }
+
 }
+
+
+            // return () => {
+            //     this.socket.disconnect();
+            // }    
