@@ -21,8 +21,8 @@
             <span class="icon-image">
                 <img src="assets/image.png" width="4%" height="4%" alt="">
             </span>
-            <input id="inputmess" placeholder="take a message ..." class="text-mess" type="text" [(ngModel)]="message" (keyup.enter)="sendMessage()" (focus)="focusInput()"
-                (focusout)="focusOutInput()">
+            <input id="inputmess" placeholder="take a message ..." class="text-mess" type="text" [(ngModel)]="message" (keyup.enter)="sendMessage()"
+                (focus)="focusInput()" (focusout)="focusOutInput()">
             <span class="emoji">
                 <img id="popupsetup" src="{{popupImgSrc}}" (click)="setupPopup()" width="3%" height="3%" alt="">
             </span>
@@ -41,45 +41,3 @@
     </div>
 </div>
 
-<!-- list online -->
-<div class="right-content">
-    <div class="list-online" *ngIf="listusers.length > 0">
-        <div *ngFor='let user of listusers' class="client" (click)="TakeAMessage(user)">
-            <div class="dot"></div>
-            <div class="name">{{user}}</div>
-        </div>
-    </div>
-
-    <div class="nothing-online" *ngIf="listusers.length === 0">
-        <img class="img-face" src="assets/sad-face.ico" width="50%" height="50%" alt="">
-        <br> There's no person !!
-    </div>
-</div>
-<!-- <div class="message-box">
-    <div class="text-area">
-        <h6>user 1</h6>
-        <div #contentmess [scrollTop]="contentmess.scrollHeight">
-    
-        </div>
-        <div class="input">
-            <span class="icon-image">
-                <img src="assets/image.png" width="4%" height="4%" alt="">
-            </span>
-            <input id="inputmess" placeholder="take a message ..." class="text-mess" type="text">
-            <span class="emoji">
-                <img id="popupsetup" src="{{popupImgSrc}}" (click)="setupPopup()" width="3%" height="3%" alt="">
-            </span>
-            <span id="btn-send-mess" class="icon-send" (click)="sendMessage()">
-                <img src="assets/send.png" width="4%" height="4%" alt="">
-            </span>
-            <div id="row-popup" class="row-popup hidden-emoji">
-
-                <div id="popup" class="emoji-popup">
-                    <div class="list-icon">
-                        <img *ngFor="let emoji of emojis | sort" src="assets/{{emoji}}.gif" (click)="chooseEmoji(emoji)">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div> -->

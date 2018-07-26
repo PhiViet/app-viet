@@ -9,6 +9,7 @@ import { ChatComponent } from './chat/chat.component';
 import { MusicComponent } from './music/music.component';
 import { NewsComponent } from './news/news.component';
 import { DoingComponent } from './doing/doing.component';
+import { OnlineComponent } from './online/online.component';
 
 
 @NgModule({
@@ -26,6 +27,7 @@ import { DoingComponent } from './doing/doing.component';
         MusicComponent,
         NewsComponent,
         DoingComponent,
+        OnlineComponent,
     ],
     providers: [],
 })

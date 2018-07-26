@@ -22,6 +22,8 @@ export class ChatComponent implements OnInit {
   private isOpenpopup = document.getElementsByClassName('hidden-emoji');
   private box = document.getElementsByClassName('box');
 
+  private listBoxMessage = [];
+
   constructor(
     private chatService: ChatService,
   ) { }
@@ -40,11 +42,10 @@ export class ChatComponent implements OnInit {
 
   focusOutInput() {
     document.getElementById('textarea').classList.remove('box');
-
   }
 
   onClickScreen(event) {
-  
+
     if (event.target.id !== 'popup' && event.target.id !== 'popupsetup') {
       this.closePopUpEmoji();
     }
@@ -64,10 +65,6 @@ export class ChatComponent implements OnInit {
   closePopUpEmoji() {
     document.getElementById('row-popup').classList.add('hidden-emoji');
     this.popupImgSrc = 'assets/emoji.png';
-  }
-
-  TakeAMessage(name){
-    console.log(name);
   }
 
   getMessage() {

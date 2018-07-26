@@ -1,0 +1,22 @@
+<div class="right-content">
+    <div class="list-online" *ngIf="listusers.length > 0">
+        <div *ngFor='let user of listusers' class="client" (click)="TakeAMessage(user)">
+            <div class="dot"></div>
+            <div class="name">{{user}}</div>
+        </div>
+    </div>
+
+    <div class="nothing-online" *ngIf="listusers.length === 0">
+        <img class="img-face" src="assets/sad-face.ico" width="50%" height="50%" alt="">
+        <br> There's no person !!
+    </div>
+</div>
+<div class="box-area">
+    <div class="message-box-area" *ngFor="let message of listBoxMessage">
+        <h6 class="title-mess-box">
+            <span class="dot"></span>
+            <span>{{message.name}}</span>
+            <span class="close-box" (click)="closeBox(message.name)">x</span>
+        </h6>
+    </div>
+</div>
