@@ -80,9 +80,9 @@ export class ChatService {
                 observer.next(data);
             });
 
-            return () => {
-                this.socket.disconnect();
-            }
+            // return () => {
+            //     this.socket.disconnect();
+            // }
         });
 
         return observable;

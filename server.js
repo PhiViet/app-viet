@@ -31,18 +31,19 @@ var arrUsers = [];
 io.on("connection", listenClient);
 
 function listenClient(socket) {
-    
+
     // client send username
     socket.on("client-send-username", function (data) {
         if (arrUsers.indexOf(data) > -1) {
             socket.emit("server-send-register-fail");
         }
         else {
-
             arrUsers.push(data);
             socket.username = data;
             socket.emit("server-send-register-success", data);
             io.sockets.emit("server-send-users", arrUsers);
+            // socket.broadcast.emit("server-send-users", arrUsers);
+
         }
     })
 
