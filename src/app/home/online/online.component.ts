@@ -25,7 +25,7 @@ export class OnlineComponent implements OnInit {
 
   listOnlineUsers() {
     this.chatService.listOnlineUsersFromSoket().subscribe((data: any) => {
-      this.listusers = this.listusers.concat(this.listusers = data.filter(e => e !== this.account.nameAccount));
+      this.listusers = data.filter(e => e !== this.account.nameAccount);
     });
   }
 

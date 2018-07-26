@@ -13,7 +13,6 @@ import { MalihuScrollbarService } from 'ngx-malihu-scrollbar';
 })
 export class HomeComponent implements OnInit, OnDestroy {
 
-    // test = '<img src="assets/1.gif" alt="">';
     public listmenu = [
         {
             name: 'Home',
@@ -28,19 +27,16 @@ export class HomeComponent implements OnInit, OnDestroy {
             route: 'news'
         }
     ];
+    
     public popupImgSrc = 'assets/emoji.png';
     public account;
     constructor(
-        // private titleService: Title,
         private chatService: ChatService,
         private toastService: ToastrService,
         private router: Router) { }
 
     ngOnInit() {
         this.account = JSON.parse(localStorage.getItem('account'));
-        // if (this.account.nameAccount) {
-        //     this.titleService.setTitle(this.account.nameAccount);
-        // }
         this.checkExistedAccount();
     }
 
