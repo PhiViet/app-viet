@@ -12,11 +12,20 @@
     </div>
 </div>
 <div class="box-area">
-    <div class="message-box-area" *ngFor="let message of listBoxMessage">
+    <div class="message-box-area" *ngFor="let user of listBoxMessage">
         <h6 class="title-mess-box">
             <span class="dot"></span>
-            <span>{{message.name}}</span>
-            <span class="close-box" (click)="closeBox(message.name)">x</span>
+            <span>{{user.name}}</span>
+            <span class="close-box" (click)="closeBox(user.name)">x</span>
         </h6>
+        <div class="content-mess-box">
+
+        </div>
+        <div class="input">
+            <input type="text" placeholder="Aa" (ngModel)="message">
+            <span class="send-mess" (click)="sendMessage(user.name)">
+                <img src="assets/send.png" width="9%" height="25%" alt="">
+            </span>
+        </div>
     </div>
 </div>

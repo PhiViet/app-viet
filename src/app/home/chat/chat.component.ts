@@ -37,6 +37,7 @@ export class ChatComponent implements OnInit {
   }
 
   focusInput() {
+    
     document.getElementById('textarea').classList.add('box');
   }
 

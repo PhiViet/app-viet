@@ -57,7 +57,7 @@
 .box-area{
     position: fixed;
     right: 10px;
-    bottom:0;
+    bottom:5px;
     
     .dot{
         margin-right: 5px;
@@ -93,5 +93,29 @@
         border-radius: 4px 4px 0 0;
         box-shadow: 1px 1px 5px rgba(0, 0, 0, .3);
     }
+
+    .content-mess-box{
+        height: 68%;
+    }
+
+    .input{
+        height: 32%;
+        // margin-bottom:15px;
+        padding: 5px 10px;
+        border-top: 1px solid #dedede;
+    }
+
+    input{
+        margin: 0 auto;
+        width: 90%;
+        border: none;
+        outline: none;
+    }
+
+    // .send-mess{
+        // width: 10%;
+        // height: 20px;
+    // }
+
 }
 
