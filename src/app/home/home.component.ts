@@ -1,6 +1,6 @@
 import { ToastrService } from 'ngx-toastr';
 import { ChatService } from './../chat.service';
-import { Component, OnInit, OnDestroy, SystemJsNgModuleLoader } from '@angular/core';
+import { Component, OnInit, OnDestroy, SystemJsNgModuleLoader, AfterViewInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { error } from 'util';
 import { MalihuScrollbarService } from 'ngx-malihu-scrollbar';
@@ -11,8 +11,9 @@ import { MalihuScrollbarService } from 'ngx-malihu-scrollbar';
     templateUrl: 'home.component.html',
     styleUrls: ['home.component.css']
 })
-export class HomeComponent implements OnInit, OnDestroy {
+export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
 
+    public loadComplete = false;
     public listmenu = [
         {
             name: 'Home',
@@ -58,6 +59,10 @@ export class HomeComponent implements OnInit, OnDestroy {
             return true;
         });
         return false;
+    }
+
+    ngAfterViewInit() {
+       
     }
 
     ngOnDestroy() {

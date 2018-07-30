@@ -1,6 +1,6 @@
 import { UsersService } from './../users.service';
 import { ChatService } from './../chat.service';
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, AfterViewInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import { CurrencyIndex } from '@angular/common/src/i18n/locale_data';
@@ -11,11 +11,10 @@ import { CurrencyIndex } from '@angular/common/src/i18n/locale_data';
     styleUrls: ['login.component.css']
 })
 
-export class LoginComponent implements OnInit, OnDestroy {
+export class LoginComponent implements OnInit, OnDestroy, AfterViewInit {
 
-    test;
     public subcribeRegisterSuccess;
-
+    public loadComplete;
     public arrPlaceholerName = ["Sói xám", "Cừu non", "Gà con", "Vịt bầu", "Thỏ nâu"];
     public currentPlaceholerName;
     public currentShowText;
@@ -32,6 +31,7 @@ export class LoginComponent implements OnInit, OnDestroy {
 
     ngOnInit() {
 
+        // this.loadComplete = false;
         this.account = JSON.parse(localStorage.getItem('account'));
         if (this.account) {
             this.chatService.registerAUser(this.account.nameAccount);
@@ -113,6 +113,10 @@ export class LoginComponent implements OnInit, OnDestroy {
             });
             this.router.navigate(['/dashboard/chat']);
         });
+    }
+
+    ngAfterViewInit() {
+        this.loadComplete = true;
     }
 
     ngOnDestroy() {

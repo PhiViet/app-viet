@@ -155,5 +155,4 @@ export class ChatComponent implements OnInit {
     })
     this.message = this.message + emo[0].code;
   }
-
 }
