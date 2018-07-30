@@ -24,7 +24,7 @@
             <input id="inputmess" placeholder="take a message ..." class="text-mess" type="text" [(ngModel)]="message" (keyup.enter)="sendMessage()"
                 (focus)="focusInput()" (focusout)="focusOutInput()">
             <span class="emoji">
-                <img id="popupsetup" src="{{popupImgSrc}}" (click)="setupPopup()" (click)="toggle(!hidden-emoji)" width="3%" height="3%" alt="">
+                <img id="popupsetup" src="{{popupImgSrc}}" (click)="setupPopup()" width="3%" height="3%" alt="">
             </span>
             <span id="btn-send-mess" class="icon-send" (click)="sendMessage()">
                 <img src="assets/send.png" width="4%" height="4%" alt="">
