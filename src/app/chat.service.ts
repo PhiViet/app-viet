@@ -57,6 +57,7 @@ export class ChatService {
 
 
     registerSuccess() {
+
         let observable = new Observable(observer => {
             this.socket.on('server-send-register-success', (data) => {
 

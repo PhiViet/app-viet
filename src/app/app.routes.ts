@@ -8,7 +8,7 @@ import { HomeModule } from './home/home.module';
 
 const routes: Routes = [
     { path: '', pathMatch: 'full', redirectTo: 'login' },
-    { path: 'login', component: LoginComponent },
+    { path: 'login', component: LoginComponent,  },
     // { path: 'login', loadChildren:()=> LoginModule},
 
     // { path: 'home', component: HomeComponent, canActivate: [LoginGuard] },

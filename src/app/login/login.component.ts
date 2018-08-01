@@ -14,7 +14,6 @@ import { CurrencyIndex } from '@angular/common/src/i18n/locale_data';
 export class LoginComponent implements OnInit, OnDestroy, AfterViewInit {
 
     public subcribeRegisterSuccess;
-    public loadComplete;
     public arrPlaceholerName = ["Sói xám", "Cừu non", "Gà con", "Vịt bầu", "Thỏ nâu"];
     public currentPlaceholerName;
     public currentShowText;
@@ -31,7 +30,6 @@ export class LoginComponent implements OnInit, OnDestroy, AfterViewInit {
 
     ngOnInit() {
 
-        // this.loadComplete = false;
         this.account = JSON.parse(localStorage.getItem('account'));
         if (this.account) {
             this.chatService.registerAUser(this.account.nameAccount);
@@ -40,6 +38,8 @@ export class LoginComponent implements OnInit, OnDestroy, AfterViewInit {
         this.setNamePlaceholder();
         this.checkRegisterSuccess();
         this.checkRegisterFail();
+        // this.loadComplete = false;
+
     }
 
     i: number = 0;
@@ -116,7 +116,6 @@ export class LoginComponent implements OnInit, OnDestroy, AfterViewInit {
     }
 
     ngAfterViewInit() {
-        this.loadComplete = true;
     }
 
     ngOnDestroy() {

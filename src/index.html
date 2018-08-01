@@ -22,12 +22,12 @@
       transition: opacity .8s ease-out;
     }
 
-    app-root:empty+.loading {
+    app-root:empty+.loading{
       opacity: 1;
       z-index: 100;
     }
 
-    img {
+    .imgload {
       margin-bottom: 50px;
       /* animation swing */
       animation: swing ease-in-out 1s infinite alternate;
@@ -54,7 +54,7 @@
 <body>
   <app-root></app-root>
   <div class="loading">
-    <img src="assets/11.png" alt="">
+    <img class="imgload"src="assets/11.png" alt="">
   </div>
 </body>
 
