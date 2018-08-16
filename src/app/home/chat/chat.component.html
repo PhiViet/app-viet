@@ -1,45 +1,47 @@
 <div class="center-content">
-    <!-- text area -->
-    <div id="textarea" class="text-area">
-        <h5>Write Something</h5>
-        <div id="content-mess" #contentmess [scrollTop]="contentmess.scrollHeight">
-            <div *ngFor='let content of messages' class="width: 100%">
-                <div *ngIf="content.username == account.nameAccount" class="mess" style="background-color: paleturquoise; margin-left: auto;margin-right: 15px">
-                    <p>
-                        <span [innerHTML]='content.message'></span>
-                    </p>
-                </div>
-                <div *ngIf="content.username !== account.nameAccount" class="mess">
-                    <p>
-                        <b>{{content.username}}</b> :
-                        <span [innerHTML]='content.message'></span>
-                    </p>
+        <!-- text area -->
+        <div id="textarea" class="text-area">
+            <h5>Write Something</h5>
+            <div id="content-mess" #contentmess [scrollTop]="contentmess.scrollHeight">
+                <div *ngFor='let content of messages' class="width: 100%">
+                    <div *ngIf="content.username == account.nameAccount" class="mess" style="background-color: paleturquoise; margin-left: auto;margin-right: 15px">
+                        <p>
+                            <!-- <span>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Perferendis ipsa voluptates aspernatur optio, sint blanditiis rerum, dolor soluta asperiores dolorem alias distinctio pariatur officiis sunt quidem esse aut labore eum.</span> -->
+                            <span [innerHTML]='content.message'></span>
+                        </p>
+                    </div>
+                    <div *ngIf="content.username !== account.nameAccount" class="mess">
+                        <p>
+                            <b>{{content.username}}</b> :
+                            <span [innerHTML]='content.message'></span>
+                        </p>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div id="input" class="input">
-            <span class="icon-image">
-                <img src="assets/image.png" width="4%" height="4%" alt="">
-            </span>
-            <input id="inputmess" placeholder="take a message ..." class="text-mess" type="text" [(ngModel)]="message" (keyup.enter)="sendMessage()"
-                (focus)="focusInput()" (focusout)="focusOutInput()">
-            <span class="emoji">
-                <img id="popupsetup" src="{{popupImgSrc}}" (click)="setupPopup()" width="3%" height="3%" alt="">
-            </span>
-            <span id="btn-send-mess" class="icon-send" (click)="sendMessage()">
-                <img src="assets/send.png" width="4%" height="4%" alt="">
-            </span>
-            <!-- <div id="row-popup" class="row-popup hidden-emoji"> -->
-                <!-- <div id="row-popup" class="row-popup" [ngClass]="{'hidden-emoji':true}"> -->
-                <div id="row-popup" class="row-popup" [ngClass]="{'hidden-emoji': true}">
-
-                <div id="popup" class="emoji-popup">
-                    <div class="list-icon">
-                        <img *ngFor="let emoji of emojis | sort" src="assets/{{emoji}}.gif" (click)="chooseEmoji(emoji)">
+            <div id="input" class="input">
+                <span class="icon-image">
+                    <img src="assets/image.png" width="4%" height="4%" alt="">
+                </span>
+                <input id="inputmess" placeholder="take a message ..." class="text-mess" type="text" [(ngModel)]="message" (keyup.enter)="sendMessage()"
+                    (focus)="focusInput()" (focusout)="focusOutInput()">
+                <span class="emoji">
+                    <img id="popupsetup" src="{{popupImgSrc}}" (click)="setupPopup()" width="3%" height="3%" alt="">
+                </span>
+                <span id="btn-send-mess" class="icon-send" (click)="sendMessage()">
+                    <img src="assets/send.png" width="4%" height="4%" alt="">
+                </span>
+                <!-- <div id="row-popup" class="row-popup hidden-emoji"> -->
+                    <!-- <div id="row-popup" class="row-popup" [ngClass]="{'hidden-emoji':true}"> -->
+                    <div id="row-popup" class="row-popup" [ngClass]="{'hidden-emoji': true}">
+    
+                    <div id="popup" class="emoji-popup">
+                        <div class="list-icon">
+                            <img *ngFor="let emoji of emojis | sort" src="assets/{{emoji}}.gif" (click)="chooseEmoji(emoji)">
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-
+    
+    

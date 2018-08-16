@@ -1,5 +1,4 @@
-/* @import url("https://fonts.googleapis.com/css?family=Indie+Flower|Raleway"); */
-
+@import url("https://fonts.googleapis.com/css?family=Indie+Flower|Raleway");
 
 .left-content {
     width: 22%;
@@ -29,22 +28,12 @@
     float: right;
 }
 
-/* .nothing-online{
-} */
-
 .client, .menu{
     cursor: pointer;
     width: 100%;
     padding: 8px 0;
-    /* float: left; */
-    /* font-family: Helvetica, Arial, sans-serif !important; */
-
     font-family: Arial, Helvetica, sans-serif;;
     font-size: 13px;
-    /* border: 2px solid #dedede; */
-    /* background-color: #f1f1f1; */
-    /* border-radius: 5px; */
-    /* margin: 5px 0; */
 }
 
 h5:hover, .client:hover{
@@ -92,33 +81,48 @@ h5{
     background: #f6f7f9;
     padding: 10px 0;
     text-align: center;
-    /* font-family: 'Indie Flower';    */
 }
-
 
 #content-mess{
     height: 50vh;
-    overflow: auto;
     padding: 15px 0;
-    /* overflow: -moz-scrollbars-vertical;  */
     overflow-y: scroll;
+    overflow: hidden;
+}
+#content-mess:hover{
+    overflow: auto;
+}
+// scrollbar 
+::-webkit-scrollbar {
+    width: 7px;
+    height: 4%;
 }
 
-#content-mess::-webkit-scrollbar { 
-    display: none; 
+::-webkit-scrollbar-thumb {
+    background: #888; 
+    border-radius: 5px;
+    height: 1px;
 }
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+}
+
 
 .img-face{
     animation: rotation 2s normal linear;
 }
 
 .mess {
-    /* border: 2px solid #dedede; */
     background-color: #f1f1f1;
     border-radius: 5px;
     padding: 10px;
     margin: 0 15px 10px 15px;
     width: 60%;
+
+    span{
+        word-wrap: break-word;
+    }
 }
 
 .mess p {

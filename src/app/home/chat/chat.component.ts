@@ -9,7 +9,7 @@ import { ChatService } from '../../chat.service';
   styleUrls: ['./chat.component.scss'],
   host: {
     '(document:click)': 'onClickScreen($event)'
-  }
+  },
 })
 export class ChatComponent implements OnInit {
 
@@ -35,7 +35,7 @@ export class ChatComponent implements OnInit {
     this.getMessage();
     this.listOnlineUsers();
   }
-
+  
   focusInput() {
     
     document.getElementById('textarea').classList.add('box');
@@ -46,7 +46,6 @@ export class ChatComponent implements OnInit {
   }
 
   onClickScreen(event) {
-
     if (event.target.id !== 'popup' && event.target.id !== 'popupsetup') {
       this.closePopUpEmoji();
     }
@@ -103,34 +102,13 @@ export class ChatComponent implements OnInit {
     { code: ':))', codeReg: ':[)][)]', img: '21' },
 
     { code: ':)', codeReg: ':[)]', img: '1' },
-
-
-
     { code: ':|', codeReg: ':[|]', img: '22' },
     { code: '=;', codeReg: '=;', img: '27' },
     { code: '8-|', codeReg: '8-[|]', img: '29' },
-    // { code: ':P', codeReg: ':P', img: '32' },
     { code: '[-(', codeReg: '[[]-[(]', img: '33' },
     { code: '=P~', codeReg: '=P~', img: '38' },
     { code: ':-?', codeReg: ':-[?]', img: '39' },
-    // { code: '<):)', codeReg: '[<][)][:][)]', img: '48' },
-    // { code: ':)', codeReg: ':[)]', img: '49' },
-    // { code: ':)', codeReg: ':[)]', img: '50' },
-    // { code: ':))', codeReg: ':[)][)]', img: '52' },
-    // { code: ':)', codeReg: ':[)]', img: '53' },
-    // { code: ':)', codeReg: ':[)]', img: '54' },
-    // { code: ':))', codeReg: ':[)][)]', img: '56' },
-    // { code: ':)', codeReg: ':[)]', img: '57' },
-    // { code: '', codeReg: ':[)]', img: '59' },
-    // { code: ':)', codeReg: ':[)]', img: '62' },
-    // { code: ':))', codeReg: ':[)][)]', img: '72' },
-    // { code: ':)', codeReg: ':[)]', img: '73' },
-    // { code: ':)', codeReg: ':[)]', img: '74' },
-    // { code: ':)', codeReg: ':[)]', img: '75' },
     { code: '(*)', codeReg: '[(][*][)]', img: '79' },
-    // { code: '>:)', codeReg: '>:[)]', img: '25' },        
-    // { code: ';;)', codeReg: ';;[)]', img: '5' },
-    // { code: '=))', codeReg: '=[)][)]', img: '24' },
   ];
 
   formatStringToYahooIcon(message: string) {
