@@ -25,37 +25,46 @@ server.listen(process.env.PORT || 8080);
 // app.listen(process.env.PORT || 8080);
 
 
-var arrUsers = [];
+var listUsers = [];
 
 
 io.on("connection", listenClient);
 
 function listenClient(socket) {
+    console.log('connection');
 
-    // client send username
-    socket.on("client-send-username", function (data) {
-        // if (arrUsers.indexOf(data) > -1) {
-        //     socket.emit("server-send-register-fail");
-        // }
-        // else {
-            arrUsers.push(data);
+    socket.on('register-a-user',function(data){
+        if(listUsers.indexOf(data)<0){
+            // listUsers.push(data);
             socket.username = data;
-            socket.emit("server-send-register-success", data);
-            io.sockets.emit("server-send-users", arrUsers);
-            // socket.broadcast.emit("server-send-users", arrUsers);
+            socket.emit('register-success',data);
+        }
+        else {
+            socket.emit('register-fail');
 
-        // }
-    })
-
-    socket.on("logout", function () {
-        var index = arrUsers.indexOf(socket.username);
-        arrUsers.splice(index, 1);
-        // deleteUserFromListOnline(socket.username);
-        socket.broadcast.emit("server-send-users", arrUsers);
+        }
     });
 
+    socket.on('add-user',function(){
+        if(socket.username !== undefined){
+            listUsers.push(socket.username);
+        }
+        io.emit('list-online',listUsers);
+        console.log(listUsers);
+    });
+
+    socket.on('logout', deleteAUser);
+
+    socket.on('disconnect', deleteAUser);
+
+    function deleteAUser(){
+        var index = listUsers.indexOf(socket.username);
+        listUsers.splice(index, 1); 
+        socket.broadcast.emit("list-online", listUsers);
+    }
+
     socket.on("client-send-message", function (data) {
-        io.sockets.emit("server-send-message",
+        io.emit("server-send-message",
             {
                 username: socket.username,
                 message: data
@@ -68,18 +77,7 @@ function listenClient(socket) {
     });
 
     socket.on("client-untyping", function () {
-        // var s = socket.username;
         socket.broadcast.emit("status-untyping");
-    });
-
-    socket.on("disconnect", function () {
-        var index = arrUsers.indexOf(socket.username);
-        arrUsers.splice(index, 1);
-        socket.broadcast.emit("server-send-users", arrUsers);
-
-        // deleteUserFromListOnline(socket.username);
-
-        console.log('DISCONNECT : ' + socket.id);
     });
 
 }

@@ -17,7 +17,6 @@ export class ChatComponent implements OnInit {
   public popupImgSrc = 'assets/emoji.png';
   public message = '';
   public messages = [];
-  public listusers = [];
   public connection;
   private isOpenpopup = document.getElementsByClassName('hidden-emoji');
   private box = document.getElementsByClassName('box');
@@ -33,7 +32,6 @@ export class ChatComponent implements OnInit {
     this.account = JSON.parse(localStorage.getItem('account'));
 
     this.getMessage();
-    this.listOnlineUsers();
   }
   
   focusInput() {
@@ -119,12 +117,6 @@ export class ChatComponent implements OnInit {
     })
 
     this.message = message;
-  }
-
-  listOnlineUsers() {
-    this.chatService.listOnlineUsersFromSoket().subscribe((data: any) => {
-      this.listusers = data.filter(e => e !== this.account.nameAccount);
-    });
   }
 
   chooseEmoji(imgemoji) {

@@ -10,21 +10,28 @@ export class OnlineComponent implements OnInit {
 
   private account;
   public listBoxMessage = [];
-  public listusers = [
-    'Admin'
-  ];
+  public listusers = [];
   constructor(
     private chatService: ChatService
   ) { }
 
   ngOnInit() {
     this.account = JSON.parse(localStorage.getItem('account'));
-    this.listOnlineUsers();
+
+    this.listUserOnline();
+    // this.listOnlineUsers();
   }
 
-  listOnlineUsers() {
-    this.chatService.listOnlineUsersFromSoket().subscribe((data: any) => {
-      this.listusers = data.filter(e => e !== this.account.nameAccount);
+  // listOnlineUsers() {
+  //   this.chatService.listOnlineUsersFromSoket().subscribe((data: any) => {
+  //     this.listusers = data.filter(e => e !== this.account.nameAccount);
+  //   });
+  // }
+
+  listUserOnline() {
+    this.chatService.addAUserToListOnline();
+    this.chatService.listUserOnline().subscribe((data: any) => {
+      this.listusers = data.filter(e=> e!== this.account.nameAccount);
     });
   }
 

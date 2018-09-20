@@ -38,7 +38,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
 
     ngOnInit() {
         this.account = JSON.parse(localStorage.getItem('account'));
-        this.checkExistedAccount();
+        // this.checkExistedAccount();
     }
 
     logout() {
@@ -49,17 +49,17 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
 
     }
 
-    checkExistedAccount(): boolean {
-        this.chatService.registerFail().subscribe(() => {
-            this.toastService.error('Tên đã được người khác sử dụng !', '', {
-                timeOut: 2000
-            });
-            localStorage.removeItem('account');
-            this.router.navigate(['/login']);
-            return true;
-        });
-        return false;
-    }
+    // checkExistedAccount(): boolean {
+    //     this.chatService.registerFail().subscribe(() => {
+    //         this.toastService.error('Tên đã được người khác sử dụng !', '', {
+    //             timeOut: 2000
+    //         });
+    //         localStorage.removeItem('account');
+    //         this.router.navigate(['/login']);
+    //         return true;
+    //     });
+    //     return false;
+    // }
 
     ngAfterViewInit() {
        
