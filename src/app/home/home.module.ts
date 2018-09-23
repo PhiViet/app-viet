@@ -20,7 +20,6 @@ import {NgbModule, NgbTooltipModule} from '@ng-bootstrap/ng-bootstrap';
         FormsModule,
         NgbModule,
         NgbTooltipModule
-        // NgbTooltip
     ],
     exports: [],
     declarations: [
