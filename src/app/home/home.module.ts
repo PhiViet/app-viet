@@ -10,13 +10,17 @@ import { MusicComponent } from './music/music.component';
 import { NewsComponent } from './news/news.component';
 import { DoingComponent } from './doing/doing.component';
 import { OnlineComponent } from './online/online.component';
+import {NgbModule, NgbTooltipModule} from '@ng-bootstrap/ng-bootstrap';
 
 
 @NgModule({
     imports: [
         HomeRoutingModule,
         CommonModule,
-        FormsModule
+        FormsModule,
+        NgbModule,
+        NgbTooltipModule
+        // NgbTooltip
     ],
     exports: [],
     declarations: [

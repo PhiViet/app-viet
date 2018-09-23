@@ -7,7 +7,7 @@ import { MalihuScrollbarService } from 'ngx-malihu-scrollbar';
 // import { Title } from '@angular/platform-browser';
 
 @Component({
-    selector: 'app-ho',
+    selector: 'app-home',
     templateUrl: 'home.component.html',
     styleUrls: ['home.component.css']
 })
