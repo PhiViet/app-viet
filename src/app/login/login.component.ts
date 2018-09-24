@@ -12,7 +12,8 @@ import { Router } from '@angular/router';
 
 export class LoginComponent implements OnInit, OnDestroy, AfterViewInit {
 
-    public subcribeRegisterSuccess;
+    public subcribeRegisterSuccess 
+    public subcribeRegisterFail;
     public arrPlaceholerName = ["Sói xám", "Cừu non", "Gà con", "Vịt bầu", "Thỏ nâu"];
     public currentShowText;
 
@@ -29,28 +30,35 @@ export class LoginComponent implements OnInit, OnDestroy, AfterViewInit {
     ngOnInit() {
 
         this.account = JSON.parse(localStorage.getItem('account'));
-        this.checkRegisterSuccess();
+        if (this.account) {
+            this.chatService.registerAUser(this.account.nameAccount );
+        }
 
-        // if (this.account) {
-        // this.chatService.registerAUser(this.account.nameAccount);
-        // }
+        this.checkRegisterSuccess();
+        this.checRegisterFail();
 
         this.setNamePlaceholder();
-        // this.checkRegisterSuccess();
-        // this.checkRegisterFail();
-        // this.loadComplete = false;
 
-        // this.chatService.listOnlineFirst();
     }
 
     checkRegisterSuccess() {
-        this.chatService.registerSuccess().subscribe(data => {
+        this.subcribeRegisterSuccess = this.chatService.registerSuccess().subscribe(data => {
+            this.toastService.success('Đăng nhập thành công !!!', '', {
+                timeOut: 1000
+            });
             localStorage.setItem('account', JSON.stringify({ nameAccount: data }));
             this.router.navigate(['dashboard/chat']);
         })
     }
 
-    i: number = 0;
+    checRegisterFail() {
+        this.subcribeRegisterFail = this.chatService.registerFail().subscribe(() => {
+            this.toastService.warning('Tên đăng kí đang được người khác sử dụng !!!', '', {
+                timeOut: 2000
+            });
+        });
+    }
+
     setNamePlaceholder() {
         let i = 1;
         let currentArrIndex = 0;
@@ -129,6 +137,7 @@ export class LoginComponent implements OnInit, OnDestroy, AfterViewInit {
     }
 
     ngOnDestroy() {
-        // this.subcribeRegisterSuccess.unsubscribe();
+        this.subcribeRegisterSuccess.unsubscribe();
+        this.subcribeRegisterFail.unsubscribe();
     }
 }

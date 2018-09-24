@@ -38,6 +38,8 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
 
     ngOnInit() {
         this.account = JSON.parse(localStorage.getItem('account'));
+        
+
         // this.checkExistedAccount();
     }
 

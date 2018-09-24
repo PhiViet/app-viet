@@ -12,22 +12,17 @@ export class ChatService {
 
     private url = 'https://app-vietchat.herokuapp.com';
     //private url = 'http://localhost:8080';
-    constructor(private router: Router,) {
+    constructor(private router: Router, ) {
         this.socket = io(this.url);
-        // this.listOnlineUsersFromSoket().subscribe(data => {
-        //         // this.dataonl = data;
-        //         console.log('vo');
-        // });
     }
 
     registerAUser(username: String) {
         return this.socket.emit('register-a-user', username);
     }
 
-    registerSuccess(){
+    registerSuccess() {
         let observableUsername = new Observable(observer => {
             this.socket.on('register-success', (username) => {
-                console.log('dang ki thanh cong');
                 this.username = username;
                 observer.next(username);
             });
@@ -36,16 +31,26 @@ export class ChatService {
         return observableUsername;
     }
 
-    addAUserToListOnline(){
+    registerFail() {
+        let observableUsername = new Observable(observer => {
+            this.socket.on('register-fail', () => {
+                observer.next(false);
+            });
+        });
+
+        return observableUsername;
+    }
+
+    addAUserToListOnline() {
         // if(this.username != null){
-            // console.log('vao');
-            this.socket.emit('add-user');
+        // console.log('vao');
+        this.socket.emit('add-user');
         // }
     }
 
-    listUserOnline(){
+    listUserOnline() {
         let obsListOnline = new Observable(observer => {
-            this.socket.on('list-online',(listOnline) => {
+            this.socket.on('list-online', (listOnline) => {
                 observer.next(listOnline);
             })
         })
@@ -91,7 +96,7 @@ export class ChatService {
 
     //     let observable = new Observable(observer => {
     //         this.socket.on('server-send-register-success', (data) => {
-              
+
     //             this.profile.name = data;
     //             observer.next(data);
     //             this.router.navigate(['/dashboard/chat']);
@@ -108,7 +113,7 @@ export class ChatService {
 
     // listOnlineUsersFromSoket() {
     //     // this.socket.emit('logout');
-      
+
     //     let observable = new Observable(observer => {
     //         console.log('vao 2');
     //         this.socket.on('server-send-users', (data) => {
