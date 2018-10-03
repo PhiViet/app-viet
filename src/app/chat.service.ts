@@ -8,10 +8,10 @@ export class ChatService {
 
     // private dataonl;
     private socket;
-    private username;
+    // private username;
 
-    private url = 'https://app-vietchat.herokuapp.com';
-    //private url = 'http://localhost:8080';
+    // private url = 'https://app-vietchat.herokuapp.com';
+    private url = 'http://localhost:8080';
     constructor(private router: Router, ) {
         this.socket = io(this.url);
     }
@@ -23,7 +23,6 @@ export class ChatService {
     registerSuccess() {
         let observableUsername = new Observable(observer => {
             this.socket.on('register-success', (username) => {
-                this.username = username;
                 observer.next(username);
             });
         });
@@ -34,6 +33,30 @@ export class ChatService {
     registerFail() {
         let observableUsername = new Observable(observer => {
             this.socket.on('register-fail', () => {
+                observer.next(false);
+            });
+        });
+
+        return observableUsername;
+    }
+
+    reRegister(username){
+        return this.socket.emit('re-register-a-user', username.nameAccount);
+    }
+
+    reRegisterSuccess(){
+        let observableUsername = new Observable(obserer => {
+            this.socket.on('re-register-success',()=>{
+                obserer.next(true);
+            });
+        });
+
+        return observableUsername;
+    }
+
+    reRegisterFail(){
+        let observableUsername = new Observable(observer => {
+            this.socket.on('re-register-fail',() => {
                 observer.next(false);
             });
         });
@@ -75,59 +98,6 @@ export class ChatService {
 
         return observable;
     }
-
-    // registerFail() {
-    //     let observable = new Observable(observer => {
-    //         // observer.next(true);
-    //         this.socket.on('server-send-register-fail', () => {
-    //             observer.next(false);
-    //         });
-
-    //         return () => {
-    //             this.socket.disconnect();
-    //         }
-    //     });
-
-    //     return observable;
-    // }
-
-
-    // registerSuccess() {
-
-    //     let observable = new Observable(observer => {
-    //         this.socket.on('server-send-register-success', (data) => {
-
-    //             this.profile.name = data;
-    //             observer.next(data);
-    //             this.router.navigate(['/dashboard/chat']);
-    //             console.log('vao 1');
-    //         });
-    //     });
-
-    //     return observable;
-    // }
-
-    // registerAUser(username) {
-    //     return this.socket.emit('client-send-username', username);
-    // }
-
-    // listOnlineUsersFromSoket() {
-    //     // this.socket.emit('logout');
-
-    //     let observable = new Observable(observer => {
-    //         console.log('vao 2');
-    //         this.socket.on('server-send-users', (data) => {
-    //             console.log('vao');
-    //             observer.next(data);
-    //         }); 
-
-    //     });
-    //     return observable;
-    // }
-
-    // listOnlineFirst(){
-    //     this.socket.emit('list-online');
-    // }
 
     checkLogout() {
         this.socket.emit('logout');

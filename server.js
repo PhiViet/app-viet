@@ -11,12 +11,12 @@ var server = require('http').Server(app);
 var io = require('socket.io')(server);
 // mongodb://<dbuser>:<dbpassword>@ds139951.mlab.com:39951/dbchat
 mongoose.connect('mongodb://phiviet:viethoa00@ds139951.mlab.com:39951/dbchat', { useNewUrlParser: true });
-    // mongoose.connect('mongodb://localhost:27017/chatDB', { useNewUrlParser: true });
+// mongoose.connect('mongodb://localhost:27017/chatDB', { useNewUrlParser: true });
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error'));
 db.once('open', function () {
     console.log('connected mongo in port 27017');
-}); 
+});
 
 // path to dist
 app.use(express.static(__dirname + '/dist/APP-CHAT'));
@@ -31,13 +31,10 @@ var listUsers = [];
 io.on("connection", listenClient);
 
 function listenClient(socket) {
-    console.log('connection');
-
-    socket.on('register-a-user',function(data){
-        if(listUsers.indexOf(data)<0){
-            // listUsers.push(data);
+    socket.on('register-a-user', function (data) {
+        if (listUsers.indexOf(data) < 0) {
             socket.username = data;
-            socket.emit('register-success',data);
+            socket.emit('register-success', data);
         }
         else {
             socket.emit('register-fail');
@@ -45,21 +42,35 @@ function listenClient(socket) {
         }
     });
 
-    socket.on('add-user',function(){
-        if(socket.username !== undefined){
+    socket.on('re-register-a-user', function (data) {
+        if (listUsers.indexOf(data) < 0) {
+            socket.username = data;
+            listUsers.push(data);
+            socket.emit('re-register-success');
+            io.emit('list-online', listUsers);
+
+        }
+        else {
+            socket.emit('re-register-fail');
+        }
+    });
+
+    socket.on('add-user', function () {
+        if (socket.username !== undefined && listUsers.indexOf(socket.username) < 0) {
             listUsers.push(socket.username);
         }
-        io.emit('list-online',listUsers);
-        console.log(listUsers);
+        io.emit('list-online', listUsers);
     });
 
     socket.on('logout', deleteAUser);
 
     socket.on('disconnect', deleteAUser);
 
-    function deleteAUser(){
+    function deleteAUser() {
         var index = listUsers.indexOf(socket.username);
-        listUsers.splice(index, 1); 
+        console.log(index);
+        listUsers.splice(index, 1);
+        console.log(listUsers);
         socket.broadcast.emit("list-online", listUsers);
     }
 
@@ -101,18 +112,18 @@ function deleteUserFromListOnline(username) {
 // router
 const router = require('express').Router();
 router.post('/addUserToListOnline', addUserToListOnline);
-router.delete('/deleteUserOnline/:id',deleteUserOnline);
+router.delete('/deleteUserOnline/:id', deleteUserOnline);
 
 function deleteUserOnline(req, res, next) {
     name = req.query.name;
 
-    Online.findOneAndDelete({name:name})
-    .then(data => {
-        res.send(data);
-    })
-    .catch(err => {
-        next(err);
-    })
+    Online.findOneAndDelete({ name: name })
+        .then(data => {
+            res.send(data);
+        })
+        .catch(err => {
+            next(err);
+        })
 }
 
 function addUserToListOnline(req, res, next) {

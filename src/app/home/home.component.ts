@@ -28,9 +28,12 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
             route: 'news'
         }
     ];
-    
+
     public popupImgSrc = 'assets/emoji.png';
     public account;
+    private registerSuccess;
+    private registerFail;
+
     constructor(
         private chatService: ChatService,
         private toastService: ToastrService,
@@ -38,9 +41,23 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
 
     ngOnInit() {
         this.account = JSON.parse(localStorage.getItem('account'));
-        
+        this.chatService.reRegister(this.account);
 
-        // this.checkExistedAccount();
+        this.registerSuccess();
+        this.registerFail();
+    }
+
+    reRegisterSuccess() {
+        this.registerSuccess = this.chatService.reRegisterSuccess().subscribe((data) => {
+            return this.toastService.success('Đăng nhập thành công  !!!');
+        }).unsubscribe();
+    }
+
+    reRegisterFail() {
+        this.registerFail = this.chatService.reRegisterFail().subscribe((data) => {
+            localStorage.removeItem('account');
+            return this.toastService.warning('Tên đang được sử dụng !!!');
+        }).unsubscribe();
     }
 
     logout() {
@@ -51,20 +68,8 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
 
     }
 
-    // checkExistedAccount(): boolean {
-    //     this.chatService.registerFail().subscribe(() => {
-    //         this.toastService.error('Tên đã được người khác sử dụng !', '', {
-    //             timeOut: 2000
-    //         });
-    //         localStorage.removeItem('account');
-    //         this.router.navigate(['/login']);
-    //         return true;
-    //     });
-    //     return false;
-    // }
-
     ngAfterViewInit() {
-       
+
     }
 
     ngOnDestroy() {

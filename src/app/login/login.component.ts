@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
 
 export class LoginComponent implements OnInit, OnDestroy, AfterViewInit {
 
-    public subcribeRegisterSuccess 
+    public subcribeRegisterSuccess;
     public subcribeRegisterFail;
     public arrPlaceholerName = ["Sói xám", "Cừu non", "Gà con", "Vịt bầu", "Thỏ nâu"];
     public currentShowText;
@@ -65,6 +65,7 @@ export class LoginComponent implements OnInit, OnDestroy, AfterViewInit {
         this.addString(i, currentArrIndex);
 
     }
+
     addCurrentString;
     subCurrentString;
     addString(i, currentArrIndex) {
