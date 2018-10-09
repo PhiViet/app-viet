@@ -15,18 +15,21 @@
                         <b>{{content.username}}</b> :
                         <!-- <span [innerHTML]='content.message'></span> -->
                         <span>{{content.message}}</span>
-
                     </p>
                 </div>
             </div>
+        </div>
+        <div class="status" *ngIf="usersOnTyping">
+            <i>{{usersOnTyping}} is typing</i>
         </div>
         <div id="input" class="input">
             <span class="icon-image">
                 <img src="assets/image.png" width="4%" height="4%" alt="">
             </span>
-            <input id="inputmess" placeholder="take a message ..." class="text-mess" type="text"
-            [(ngModel)]="message" (keyup)="detectEmoji($event)" (keyup.enter)="sendMessage()"
-                (focus)="focusInput()" (focusout)="focusOutInput()">
+            <input #inputmess placeholder="take a message ..." class="text-mess" type="text"
+            [(ngModel)]="message" (ngModelChange)="detectInputChange()" 
+            (keyup)="detectInput($event)" (keyup.enter)="sendMessage()"
+            (focus)="focusInput()" (focusout)="focusOutInput()">
                 
             <span class="emoji">
                 <img id="popupsetup" src="{{popupImgSrc}}" (click)="setupPopup()" width="3%" height="3%" alt="">

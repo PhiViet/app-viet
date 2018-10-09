@@ -7,6 +7,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MenuComponent implements OnInit {
 
+  public listmenu = [
+    {
+      name: 'Home',
+      route: 'chat'
+    },
+    {
+      name: 'Music',
+      route: 'music'
+    },
+    {
+      name: 'News',
+      route: 'news'
+    }
+  ];
   constructor() { }
 
   ngOnInit() {

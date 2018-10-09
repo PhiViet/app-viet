@@ -3,28 +3,38 @@
     <div class="contain font-jose">
         <!-- navbar -->
         <div class="header">
-            <span class="infor">
+            <!-- <span class="infor">
                 Hello {{account.nameAccount}}
             </span>
             |
             <span class="logout" (click)="logout()">
                 LOG OUT
-            </span>
+            </span> -->
+
+            <ul>
+                <li>
+                    <div class="infor">Hello {{account.nameAccount}}</div>
+                </li>
+                <li (click)="logout()">
+                    <div class="logout">LOG OUT</div>
+                </li>
+            </ul>
         </div>
 
         <!-- content -->
         <div class="content">
 
             <div class="left-content">
-                <div class="list-menu">
+                <!-- <div class="list-menu">
                     <div class="menu" [routerLink]="menu.route" routerLinkActive="active" *ngFor="let menu of listmenu">
                         {{menu.name}}
                     </div>
-                </div>
+                </div> -->
+                <app-menu></app-menu>
             </div>
             <router-outlet></router-outlet>
             <!-- <div class="right-content"> -->
-                <app-online></app-online>
+            <app-online></app-online>
             <!-- </div> -->
 
         </div>

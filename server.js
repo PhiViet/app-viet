@@ -31,6 +31,8 @@ var listUsers = [];
 io.on("connection", listenClient);
 
 function listenClient(socket) {
+    console.log(socket.id);
+
     socket.on('register-a-user', function (data) {
         if (listUsers.indexOf(data) < 0) {
             socket.username = data;
@@ -38,17 +40,19 @@ function listenClient(socket) {
         }
         else {
             socket.emit('register-fail');
-
         }
     });
 
     socket.on('re-register-a-user', function (data) {
         if (listUsers.indexOf(data) < 0) {
             socket.username = data;
-            listUsers.push(data);
+            let user = {
+                socketid: socket.id,
+                username: data
+            }
+            listUsers.push(user);
             socket.emit('re-register-success');
             io.emit('list-online', listUsers);
-
         }
         else {
             socket.emit('re-register-fail');
@@ -56,10 +60,15 @@ function listenClient(socket) {
     });
 
     socket.on('add-user', function () {
-        if (socket.username !== undefined && listUsers.indexOf(socket.username) < 0) {
-            listUsers.push(socket.username);
-        }
+        // if (socket.username !== undefined && listUsers.indexOf(socket.username) < 0) {
+        //     let user = {
+        //         socketid: socket.id,
+        //         username: socket.username
+        //     }
+        //     listUsers.push(user);
+        // }
         io.emit('list-online', listUsers);
+
     });
 
     socket.on('logout', deleteAUser);
@@ -68,9 +77,7 @@ function listenClient(socket) {
 
     function deleteAUser() {
         var index = listUsers.indexOf(socket.username);
-        console.log(index);
         listUsers.splice(index, 1);
-        console.log(listUsers);
         socket.broadcast.emit("list-online", listUsers);
     }
 
@@ -83,7 +90,7 @@ function listenClient(socket) {
     });
 
     socket.on("client-typing", function () {
-        var s = socket.username + " in typing";
+        var s = socket.username;
         socket.broadcast.emit("status-typing", s);
     });
 

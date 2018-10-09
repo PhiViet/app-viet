@@ -1,5 +1,6 @@
 import { ChatService } from './../../chat.service';
 import { Component, OnInit } from '@angular/core';
+import { IUser } from '../../IUser';
 
 @Component({
   selector: 'app-online',
@@ -10,35 +11,27 @@ export class OnlineComponent implements OnInit {
 
   private account;
   public listBoxMessage = [];
-  public listusers = [];
+  public listusers: IUser[] = [];
   constructor(
     private chatService: ChatService
   ) { }
 
   ngOnInit() {
     this.account = JSON.parse(localStorage.getItem('account'));
-
     this.listUserOnline();
-    // this.listOnlineUsers();
   }
-
-  // listOnlineUsers() {
-  //   this.chatService.listOnlineUsersFromSoket().subscribe((data: any) => {
-  //     this.listusers = data.filter(e => e !== this.account.nameAccount);
-  //   });
-  // }
 
   listUserOnline() {
     this.chatService.addAUserToListOnline();
-    this.chatService.listUserOnline().subscribe((data: any) => {
-      this.listusers = data.filter(e=> e!== this.account.nameAccount);
+    this.chatService.listUserOnline().subscribe((data: IUser[]) => {
+      this.listusers = data.filter(e => e.username !== this.account.nameAccount);
     });
   }
 
-  TakeAMessage(name) {
+  TakeAMessage(user) {
     if (this.listBoxMessage.findIndex(e => e.name === name) == -1) {
       this.listBoxMessage.unshift({
-        name: name
+        name: user.username
       });
     }
   }

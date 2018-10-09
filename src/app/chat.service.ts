@@ -10,8 +10,8 @@ export class ChatService {
     private socket;
     // private username;
 
-    private url = 'https://app-vietchat.herokuapp.com';
-    // private url = 'http://localhost:8080';
+    // private url = 'https://app-vietchat.herokuapp.com';
+    private url = 'http://localhost:8080';
     constructor(private router: Router, ) {
         this.socket = io(this.url);
     }
@@ -40,13 +40,13 @@ export class ChatService {
         return observableUsername;
     }
 
-    reRegister(username){
+    reRegister(username) {
         return this.socket.emit('re-register-a-user', username.nameAccount);
     }
 
-    reRegisterSuccess(){
+    reRegisterSuccess() {
         let observableUsername = new Observable(obserer => {
-            this.socket.on('re-register-success',()=>{
+            this.socket.on('re-register-success', () => {
                 obserer.next(true);
             });
         });
@@ -54,9 +54,9 @@ export class ChatService {
         return observableUsername;
     }
 
-    reRegisterFail(){
+    reRegisterFail() {
         let observableUsername = new Observable(observer => {
-            this.socket.on('re-register-fail',() => {
+            this.socket.on('re-register-fail', () => {
                 observer.next(false);
             });
         });
@@ -103,6 +103,33 @@ export class ChatService {
         this.socket.emit('logout');
     }
 
+    inTyping(username) {
+        console.log(username);
+        this.socket.emit('client-typing', username);
+    }
+
+    outTyping() {
+        this.socket.emit('client-untyping');
+    }
+
+    onTyping() {
+        let observable = new Observable(observer => {
+            this.socket.on('status-typing', (data) => {
+                console.log('d' + data);
+                observer.next(data);
+            });
+        });
+        return observable;
+    }
+
+    unTyping() {
+        let observable = new Observable(observer => {
+            this.socket.on('status-untyping', () => {
+                observer.next(null);
+            });
+        });
+        return observable;
+    }
 }
 
     // return () => {

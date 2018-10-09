@@ -9,25 +9,25 @@ import { MalihuScrollbarService } from 'ngx-malihu-scrollbar';
 @Component({
     selector: 'app-home',
     templateUrl: 'home.component.html',
-    styleUrls: ['home.component.css']
+    styleUrls: ['home.component.scss']
 })
 export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
 
     public loadComplete = false;
-    public listmenu = [
-        {
-            name: 'Home',
-            route: 'chat'
-        },
-        {
-            name: 'Music',
-            route: 'music'
-        },
-        {
-            name: 'News',
-            route: 'news'
-        }
-    ];
+    // public listmenu = [
+    //     {
+    //         name: 'Home',
+    //         route: 'chat'
+    //     },
+    //     {
+    //         name: 'Music',
+    //         route: 'music'
+    //     },
+    //     {
+    //         name: 'News',
+    //         route: 'news'
+    //     }
+    // ];
 
     public popupImgSrc = 'assets/emoji.png';
     public account;
@@ -43,8 +43,8 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
         this.account = JSON.parse(localStorage.getItem('account'));
         this.chatService.reRegister(this.account);
 
-        this.registerSuccess();
-        this.registerFail();
+        this.reRegisterSuccess();
+        this.reRegisterFail();
     }
 
     reRegisterSuccess() {

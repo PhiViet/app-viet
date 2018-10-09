@@ -2,7 +2,7 @@
     <div class="list-online" *ngIf="listusers.length > 0">
         <div *ngFor='let user of listusers' class="client" (click)="TakeAMessage(user)">
             <div class="dot"></div>
-            <div class="name">{{user}}</div>
+            <div class="name">{{user.username}}</div>
         </div>
     </div>
 
