@@ -10,8 +10,8 @@ export class ChatService {
     private socket;
     // private username;
 
-    // private url = 'https://app-vietchat.herokuapp.com';
-    private url = 'http://localhost:8080';
+    private url = 'https://app-vietchat.herokuapp.com';
+    // private url = 'http://localhost:8080';
     constructor(private router: Router, ) {
         this.socket = io(this.url);
     }
@@ -115,7 +115,6 @@ export class ChatService {
     onTyping() {
         let observable = new Observable(observer => {
             this.socket.on('status-typing', (data) => {
-                console.log('d' + data);
                 observer.next(data);
             });
         });
