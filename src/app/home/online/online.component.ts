@@ -29,11 +29,12 @@ export class OnlineComponent implements OnInit {
   }
 
   TakeAMessage(user) {
-    if (this.listBoxMessage.findIndex(e => e.name === name) == -1) {
+    if (this.listBoxMessage.findIndex(e => e.name === user.username) == -1) {
       this.listBoxMessage.unshift({
         name: user.username
       });
     }
+
   }
 
   closeBox(name) {
