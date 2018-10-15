@@ -56,7 +56,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     reRegisterFail() {
         this.registerFail = this.chatService.reRegisterFail().subscribe((data) => {
             localStorage.removeItem('account');
-            return this.toastService.warning('Tên đang được sử dụng !!!');
+            return this.toastService.warning('Nickname ' + data + ' đang được người khác sử dụng !!!');
         }).unsubscribe();
     }
 

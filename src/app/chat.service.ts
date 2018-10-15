@@ -10,8 +10,8 @@ export class ChatService {
     private socket;
     // private username;
 
-    private url = 'https://app-vietchat.herokuapp.com';
-    // private url = 'http://localhost:8080';
+    // private url = 'https://app-vietchat.herokuapp.com';
+    private url = 'http://localhost:8080';
     constructor(private router: Router, ) {
         this.socket = io(this.url);
     }
@@ -32,8 +32,8 @@ export class ChatService {
 
     registerFail() {
         let observableUsername = new Observable(observer => {
-            this.socket.on('register-fail', () => {
-                observer.next(false);
+            this.socket.on('register-fail', (name) => {
+                observer.next(name);
             });
         });
 
@@ -56,8 +56,8 @@ export class ChatService {
 
     reRegisterFail() {
         let observableUsername = new Observable(observer => {
-            this.socket.on('re-register-fail', () => {
-                observer.next(false);
+            this.socket.on('re-register-fail', (name) => {
+                observer.next(name);
             });
         });
 
@@ -130,7 +130,3 @@ export class ChatService {
         return observable;
     }
 }
-
-    // return () => {
-    //     this.socket.disconnect();
-    // }    

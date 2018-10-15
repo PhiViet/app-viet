@@ -22,7 +22,7 @@
 
         </div>
         <div class="input">
-            <input type="text" placeholder="maintenance" disabled>
+            <input type="text" (keyup.enter)="sendMessage(user.name)">
             <span class="send-mess" (click)="sendMessage(user.name)">
                 <img src="assets/send.png" width="9%" height="25%" alt="">
             </span>

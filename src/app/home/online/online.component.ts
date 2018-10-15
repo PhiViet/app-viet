@@ -22,7 +22,7 @@ export class OnlineComponent implements OnInit {
   }
 
   listUserOnline() {
-    this.chatService.addAUserToListOnline();
+    // this.chatService.addAUserToListOnline();
     this.chatService.listUserOnline().subscribe((data: IUser[]) => {
       this.listusers = data.filter(e => e.username !== this.account.nameAccount);
     });

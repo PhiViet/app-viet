@@ -52,8 +52,8 @@ export class LoginComponent implements OnInit, OnDestroy, AfterViewInit {
     }
 
     checRegisterFail() {
-        this.subcribeRegisterFail = this.chatService.registerFail().subscribe(() => {
-            this.toastService.warning('Tên đăng kí đang được người khác sử dụng !!!', '', {
+        this.subcribeRegisterFail = this.chatService.registerFail().subscribe((data) => {
+            this.toastService.warning('Nickname ' + data + ' đang được người khác sử dụng !!! !!!', '', {
                 timeOut: 2000
             });
         });

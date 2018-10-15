@@ -31,20 +31,19 @@ var listUsers = [];
 io.on("connection", listenClient);
 
 function listenClient(socket) {
-    console.log(socket.id);
-
     socket.on('register-a-user', function (data) {
-        if (listUsers.indexOf(data) < 0) {
+        if (listUsers.findIndex(e => e.username === data) == -1) {
             socket.username = data;
+            console.log('success')
             socket.emit('register-success', data);
         }
         else {
-            socket.emit('register-fail');
+            socket.emit('register-fail',data);
         }
     });
 
     socket.on('re-register-a-user', function (data) {
-        if (listUsers.indexOf(data) < 0) {
+        if (listUsers.findIndex(e => e.username === data) == -1) {
             socket.username = data;
             let user = {
                 socketid: socket.id,
@@ -55,30 +54,32 @@ function listenClient(socket) {
             io.emit('list-online', listUsers);
         }
         else {
-            socket.emit('re-register-fail');
+            socket.emit('re-register-fail',data);
         }
     });
 
-    socket.on('add-user', function () {
-        // if (socket.username !== undefined && listUsers.indexOf(socket.username) < 0) {
-        //     let user = {
-        //         socketid: socket.id,
-        //         username: socket.username
-        //     }
-        //     listUsers.push(user);
-        // }
-        io.emit('list-online', listUsers);
+    // socket.on('add-user', function () {
+    //     // if (socket.username !== undefined && listUsers.indexOf(socket.username) < 0) {
+    //     //     let user = {
+    //     //         socketid: socket.id,
+    //     //         username: socket.username
+    //     //     }
+    //     //     listUsers.push(user);
+    //     // }
+    //     io.emit('list-online', listUsers);
 
-    });
+    // });
 
     socket.on('logout', deleteAUser);
 
     socket.on('disconnect', deleteAUser);
 
     function deleteAUser() {
-        var index = listUsers.indexOf(socket.username);
-        listUsers.splice(index, 1);
-        socket.broadcast.emit("list-online", listUsers);
+        var index = listUsers.findIndex(e => e.username === socket.username)
+        if(index> -1){
+            listUsers.splice(index, 1);
+            socket.broadcast.emit("list-online", listUsers);
+        }
     }
 
     socket.on("client-send-message", function (data) {
