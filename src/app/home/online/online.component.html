@@ -18,12 +18,18 @@
             <span>{{user.name}}</span>
             <span class="close-box" (click)="closeBox(user.name)">x</span>
         </h6>
-        <div class="content-mess-box">
-
+        <div id="content-mess" class="content-mess-box" #contentmess [scrollTop]="contentmess.scrollHeight">
+            <div *ngFor="let message of messages | filtermessage : user.name">
+                <div class="mess" style="background-color: paleturquoise; margin-left: auto;margin-right: 15px">
+                    <p>
+                        <span>{{message.message}}</span>
+                    </p>
+                </div>
+            </div>
         </div>
         <div class="input">
-            <input type="text" (keyup.enter)="sendMessage(user.name)">
-            <span class="send-mess" (click)="sendMessage(user.name)">
+            <input type="text" (keyup.enter)="sendMessage(user.name,user.message)" [(ngModel)]="user.message">
+            <span class="send-mess" (click)="sendMessage(user.name,user.message)">
                 <img src="assets/send.png" width="9%" height="25%" alt="">
             </span>
         </div>

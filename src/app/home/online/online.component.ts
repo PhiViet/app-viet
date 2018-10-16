@@ -12,6 +12,8 @@ export class OnlineComponent implements OnInit {
   private account;
   public listBoxMessage = [];
   public listusers: IUser[] = [];
+
+  public messages = [];
   constructor(
     private chatService: ChatService
   ) { }
@@ -31,7 +33,8 @@ export class OnlineComponent implements OnInit {
   TakeAMessage(user) {
     if (this.listBoxMessage.findIndex(e => e.name === user.username) == -1) {
       this.listBoxMessage.unshift({
-        name: user.username
+        name: user.username,
+        message: ''
       });
     }
 
@@ -43,7 +46,18 @@ export class OnlineComponent implements OnInit {
     });
   }
 
-  sendMessage() {
+  sendMessage(name, message) {
+    if (message != '') {
+      const user = {
+        name: name,
+        message: message
+      }
+      this.messages.push(user)
+      this.listBoxMessage.filter(e => {
+        e.name === name;
+        e.message = '';
+      })
 
+    }
   }
 }

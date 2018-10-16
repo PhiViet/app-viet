@@ -3,7 +3,6 @@ import { FormsModule } from '@angular/forms';
 import { HomeRoutingModule } from './home.routes';
 import { HomeComponent } from './home.component';
 import { NgModule } from '@angular/core';
-import { SortPipe } from '../pipe/sort.pipe';
 import { CommonModule } from '@angular/common';
 import { ChatComponent } from './chat/chat.component';
 import { MusicComponent } from './music/music.component';
@@ -11,6 +10,7 @@ import { NewsComponent } from './news/news.component';
 import { DoingComponent } from './doing/doing.component';
 import { OnlineComponent } from './online/online.component';
 import {NgbModule, NgbTooltipModule} from '@ng-bootstrap/ng-bootstrap';
+import { MesagePipe } from '../pipe/sort-message.pipe';
 
 
 @NgModule({
@@ -25,7 +25,7 @@ import {NgbModule, NgbTooltipModule} from '@ng-bootstrap/ng-bootstrap';
     declarations: [
         HomeComponent,
         MenuComponent,
-        SortPipe,
+        MesagePipe,
         ChatComponent,
         MusicComponent,
         NewsComponent,

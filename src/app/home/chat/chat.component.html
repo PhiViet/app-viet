@@ -3,7 +3,7 @@
     <div id="textarea" class="text-area">
         <h5>Write Something</h5>
         <div id="content-mess" #contentmess [scrollTop]="contentmess.scrollHeight">
-            <div *ngFor='let content of messages' class="width: 100%">
+            <div *ngFor='let content of messages'>
                 <div *ngIf="content.username == account.nameAccount" class="mess" style="background-color: paleturquoise; margin-left: auto;margin-right: 15px">
                     <p>
                         <!-- <span [innerHTML]='content.message'></span> -->
