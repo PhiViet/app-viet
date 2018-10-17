@@ -66,10 +66,7 @@ export class ChatService {
     }
 
     addAUserToListOnline() {
-        // if(this.username != null){
-        // console.log('vao');
         this.socket.emit('add-user');
-        // }
     }
 
     listUserOnline() {
@@ -105,7 +102,6 @@ export class ChatService {
     }
 
     inTyping(username) {
-        console.log(username);
         this.socket.emit('client-typing', username);
     }
 

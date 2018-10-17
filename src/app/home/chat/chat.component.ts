@@ -82,11 +82,11 @@ export class ChatComponent implements OnInit {
   }
 
   sendMessage() {
-    this.chatService.sendMessage(this.message);
-    this.message = '';
+    if(this.message != ''){
+      this.chatService.sendMessage(this.message);
+      this.message = '';
+    }
   }
-
-
 
   public emojis = [
     { codePoint: '\u{1F642}', codeReg: ':)' }, { codePoint: '\u{1F603}', codeReg: ':D' },

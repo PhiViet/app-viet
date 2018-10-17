@@ -22,8 +22,7 @@ export class OnlineComponent implements OnInit {
     this.account = JSON.parse(localStorage.getItem('account'));
     this.listUserOnline();
     this.chatService.getMessageToUser().subscribe((data:IUser) => {
-      console.log(data);
-      this.TakeAMessage(data);
+        this.TakeAMessage(data);
       this.messages.push(data);
 
     });

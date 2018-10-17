@@ -58,7 +58,6 @@ function listenClient(socket) {
     });
 
     socket.on('send-private-message', function (data) {
-        console.log(data);
         socketid = data.socketid;
         data.username = socket.username;
         data.socketid = socket.id;
