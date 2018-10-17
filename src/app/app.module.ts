@@ -1,5 +1,4 @@
 import { ChatService } from './chat.service';
-import { SortPipe } from './pipe/sort.pipe';
 import { UsersService } from './users.service';
 import { LoginGuard } from './login.route.guard';
 import { BrowserModule } from '@angular/platform-browser';
