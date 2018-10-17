@@ -34,11 +34,10 @@ function listenClient(socket) {
     socket.on('register-a-user', function (data) {
         if (listUsers.findIndex(e => e.username === data) == -1) {
             socket.username = data;
-            console.log('success')
             socket.emit('register-success', data);
         }
         else {
-            socket.emit('register-fail',data);
+            socket.emit('register-fail', data);
         }
     });
 
@@ -54,21 +53,17 @@ function listenClient(socket) {
             io.emit('list-online', listUsers);
         }
         else {
-            socket.emit('re-register-fail',data);
+            socket.emit('re-register-fail', data);
         }
     });
 
-    // socket.on('add-user', function () {
-    //     // if (socket.username !== undefined && listUsers.indexOf(socket.username) < 0) {
-    //     //     let user = {
-    //     //         socketid: socket.id,
-    //     //         username: socket.username
-    //     //     }
-    //     //     listUsers.push(user);
-    //     // }
-    //     io.emit('list-online', listUsers);
-
-    // });
+    socket.on('send-private-message', function (data) {
+        console.log(data);
+        socketid = data.socketid;
+        data.username = socket.username;
+        data.socketid = socket.id;
+        socket.to(socketid).emit('get-private-message',data);
+    });
 
     socket.on('logout', deleteAUser);
 
@@ -76,7 +71,7 @@ function listenClient(socket) {
 
     function deleteAUser() {
         var index = listUsers.findIndex(e => e.username === socket.username)
-        if(index> -1){
+        if (index > -1) {
             listUsers.splice(index, 1);
             socket.broadcast.emit("list-online", listUsers);
         }

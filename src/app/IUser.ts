@@ -1,4 +1,5 @@
 export interface IUser {
     socketid: string,
-    username: string
+    username: string,
+    message?: string
 }

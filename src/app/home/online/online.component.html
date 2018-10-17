@@ -15,12 +15,17 @@
     <div class="message-box-area" *ngFor="let user of listBoxMessage">
         <h6 class="title-mess-box">
             <span class="dot"></span>
-            <span>{{user.name}}</span>
-            <span class="close-box" (click)="closeBox(user.name)">x</span>
+            <span>{{user.username}}</span>
+            <span class="close-box" (click)="closeBox(user.username)">x</span>
         </h6>
         <div id="content-mess" class="content-mess-box" #contentmess [scrollTop]="contentmess.scrollHeight">
-            <div *ngFor="let message of messages | filtermessage : user.name">
-                <div class="mess" style="background-color: paleturquoise; margin-left: auto;margin-right: 15px">
+            <div *ngFor="let message of messages | filtermessage : user.username">
+                <div *ngIf="message.from === this.account" class="mess" style="background-color: paleturquoise; margin-left: auto;margin-right: 15px">
+                    <p>
+                        <span>{{message.message}}</span>
+                    </p>
+                </div>
+                <div *ngIf="message.from !== this.account" class="mess">
                     <p>
                         <span>{{message.message}}</span>
                     </p>
@@ -28,8 +33,8 @@
             </div>
         </div>
         <div class="input">
-            <input type="text" (keyup.enter)="sendMessage(user.name,user.message)" [(ngModel)]="user.message">
-            <span class="send-mess" (click)="sendMessage(user.name,user.message)">
+            <input type="text" (keyup.enter)="sendMessage(user)" [(ngModel)]="user.message">
+            <span class="send-mess" (click)="sendMessage(user)">
                 <img src="assets/send.png" width="9%" height="25%" alt="">
             </span>
         </div>

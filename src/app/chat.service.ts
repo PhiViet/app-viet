@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import * as io from 'socket.io-client';
 import { Router } from '../../node_modules/@angular/router';
+import { IUser } from './IUser';
 
 @Injectable()
 export class ChatService {
@@ -127,6 +128,20 @@ export class ChatService {
                 observer.next(null);
             });
         });
+        return observable;
+    }
+
+    sendMessageToUser(user){
+        this.socket.emit('send-private-message',user);
+    }
+
+    getMessageToUser(){
+        let observable = new Observable(observer => {
+            this.socket.on('get-private-message', (data) => {
+                observer.next(data);
+            });
+        });
+
         return observable;
     }
 }

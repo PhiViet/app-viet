@@ -10,7 +10,7 @@ import { IUser } from '../../IUser';
 export class OnlineComponent implements OnInit {
 
   private account;
-  public listBoxMessage = [];
+  public listBoxMessage:IUser[] = [];
   public listusers: IUser[] = [];
 
   public messages = [];
@@ -21,43 +21,49 @@ export class OnlineComponent implements OnInit {
   ngOnInit() {
     this.account = JSON.parse(localStorage.getItem('account'));
     this.listUserOnline();
+    this.chatService.getMessageToUser().subscribe((data:IUser) => {
+      console.log(data);
+      this.TakeAMessage(data);
+      this.messages.push(data);
+
+    });
   }
 
   listUserOnline() {
-    // this.chatService.addAUserToListOnline();
     this.chatService.listUserOnline().subscribe((data: IUser[]) => {
       this.listusers = data.filter(e => e.username !== this.account.nameAccount);
     });
   }
 
-  TakeAMessage(user) {
-    if (this.listBoxMessage.findIndex(e => e.name === user.username) == -1) {
+  TakeAMessage(user:IUser) {
+    if (this.listBoxMessage.findIndex(e => e.username === user.username) == -1) {
       this.listBoxMessage.unshift({
-        name: user.username,
+        socketid: user.socketid,
+        username: user.username,
         message: ''
       });
     }
-
   }
 
   closeBox(name) {
     this.listBoxMessage = this.listBoxMessage.filter(e => {
-      return e.name !== name
+      return e.username !== name
     });
   }
 
-  sendMessage(name, message) {
-    if (message != '') {
-      const user = {
-        name: name,
-        message: message
-      }
-      this.messages.push(user)
+  sendMessage(user) {
+    let data = Object.assign({},user);
+    data.from = this.account;
+    
+    if (user.message != '') {
+      this.messages.push(data);
+      
       this.listBoxMessage.filter(e => {
-        e.name === name;
+        e.username === name;
         e.message = '';
-      })
+      });
 
+      this.chatService.sendMessageToUser(data);
     }
   }
 }
